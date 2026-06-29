@@ -54,7 +54,7 @@ export default function Skills() {
           {skillCategories.map((category, idx) => (
             <Card
               key={idx}
-              className="bg-slate-950/20 backdrop-blur-md border border-white/5 hover:border-primary/45 hover:bg-slate-900/30 hover:scale-[1.07] hover:mx-2.5 hover:my-2.5 transition-all duration-300 flex flex-col h-full group"
+              className="bg-slate-950/20 backdrop-blur-md border border-white/5 hover:border-primary/45 hover:bg-slate-900/30 transition-all duration-300 flex flex-col h-full group"
             >
               <CardHeader className="p-6 pb-4">
                 <div className="flex items-center space-x-4.5 mb-3">

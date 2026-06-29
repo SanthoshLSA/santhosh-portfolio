@@ -24,7 +24,7 @@ export default function ProjectCard({
   demoUrl,
 }: ProjectProps) {
   return (
-    <Card className="bg-slate-950/20 backdrop-blur-md border border-white/5 hover:border-primary/40 hover:bg-slate-900/30 hover:scale-[1.07] hover:mx-2.5 hover:my-2.5 transition-all duration-300 flex flex-col h-full group">
+    <Card className="bg-slate-950/20 backdrop-blur-md border border-white/5 hover:border-primary/40 hover:bg-slate-900/30 transition-all duration-300 flex flex-col h-full group">
       <CardHeader className="p-6 pb-4">
         <div className="flex justify-between items-start">
           <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 text-primary group-hover:scale-110 transition-transform duration-300">
@@ -42,7 +42,7 @@ export default function ProjectCard({
         {/* Bullet points description */}
         <ul className="text-sm sm:text-base text-muted-foreground space-y-3 mb-6 list-disc pl-5 leading-relaxed font-sans">
           {description.map((point, idx) => (
-            <li key={idx}>{point}</li>
+            <li key={idx} className="text-justify">{point}</li>
           ))}
         </ul>
 

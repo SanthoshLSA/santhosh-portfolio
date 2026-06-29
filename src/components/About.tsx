@@ -74,10 +74,10 @@ export default function About() {
             <h3 className="text-2xl sm:text-3xl font-bold text-white font-display tracking-wide uppercase leading-tight">
               INTELLIGENT SYSTEMS & FULL-STACK DEVELOPMENT
             </h3>
-            <p className="text-muted-foreground leading-relaxed text-base sm:text-lg">
+            <p className="text-muted-foreground leading-relaxed text-base sm:text-lg text-justify">
               I am an undergraduate student pursuing my B.Tech in Artificial Intelligence and Data Science at Shiv Nadar University, Chennai. Equipped with strong foundations in Data Structures and Algorithms, I focus on coding efficient backend operations, designing sleek and interactive web interfaces, and training statistics-driven models.
             </p>
-            <p className="text-muted-foreground leading-relaxed text-base sm:text-lg">
+            <p className="text-muted-foreground leading-relaxed text-base sm:text-lg text-justify">
               My engineering stack focuses heavily on full-stack Javascript architectures (MERN/PERN), competitive coding, and machine learning pipelines. I enjoy writing clean, modular code and collaborating on real-world projects that scale.
             </p>
 
@@ -86,7 +86,7 @@ export default function About() {
               {details.map((detail, idx) => (
                 <Card
                   key={idx}
-                  className="bg-slate-950/20 backdrop-blur-md border border-white/5 hover:border-primary/45 hover:bg-slate-900/30 hover:scale-[1.07] hover:mx-2.5 hover:my-2.5 transition-all duration-300 group"
+                  className="bg-slate-950/20 backdrop-blur-md border border-white/5 hover:border-primary/45 hover:bg-slate-900/30 transition-all duration-300 group"
                 >
                   <CardContent className="flex items-start space-x-4 p-5">
                     <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 group-hover:bg-primary/10 group-hover:border-primary/30 transition-colors shrink-0">

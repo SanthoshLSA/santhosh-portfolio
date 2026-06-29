@@ -51,7 +51,7 @@ export default function Education() {
           {educationData.map((edu, idx) => (
             <Card
               key={idx}
-              className="bg-slate-950/20 backdrop-blur-md border border-white/5 hover:border-primary/40 hover:bg-slate-900/30 hover:scale-[1.07] hover:mx-2.5 hover:my-2.5 transition-all duration-300 flex flex-col group"
+              className="bg-slate-950/20 backdrop-blur-md border border-white/5 hover:border-primary/40 hover:bg-slate-900/30 transition-all duration-300 flex flex-col group"
             >
               <CardContent className="p-8 flex-grow flex flex-col justify-between">
                 <div>
@@ -78,7 +78,7 @@ export default function Education() {
                   {/* Bullets */}
                   <ul className="list-disc pl-5 space-y-2 text-sm sm:text-base text-muted-foreground leading-relaxed mt-5 font-sans">
                     {edu.highlights.map((bullet, bIdx) => (
-                      <li key={bIdx}>{bullet}</li>
+                      <li key={bIdx} className="text-justify">{bullet}</li>
                     ))}
                   </ul>
                 </div>

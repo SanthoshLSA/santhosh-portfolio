@@ -50,7 +50,7 @@ export default function Achievements() {
         <div className="grid gap-8 lg:grid-cols-12 max-w-7xl mx-auto">
           {/* Left Column: LeetCode & Coding */}
           <div className="lg:col-span-5 flex flex-col justify-between">
-            <Card className="bg-slate-950/20 backdrop-blur-md border border-white/5 p-8 flex-grow flex flex-col justify-between hover:border-primary/40 hover:bg-slate-900/30 hover:scale-[1.07] hover:mx-2.5 hover:my-2.5 transition-all duration-300 group">
+            <Card className="bg-slate-950/20 backdrop-blur-md border border-white/5 p-8 flex-grow flex flex-col justify-between hover:border-primary/40 hover:bg-slate-900/30 transition-all duration-300 group">
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <Terminal className="h-6 w-6 text-primary" />
@@ -64,7 +64,7 @@ export default function Achievements() {
 
                 <ul className="list-disc pl-5 space-y-3 text-sm sm:text-base text-muted-foreground leading-relaxed font-sans">
                   {cpPoints.map((point, pIdx) => (
-                    <li key={pIdx}>{point}</li>
+                    <li key={pIdx} className="text-justify">{point}</li>
                   ))}
                 </ul>
               </div>
@@ -81,7 +81,7 @@ export default function Achievements() {
 
           {/* Right Column: Contests & Hackathons */}
           <div className="lg:col-span-7 space-y-4">
-            <Card className="bg-slate-950/20 backdrop-blur-md border border-white/5 p-8 hover:border-primary/40 hover:bg-slate-900/30 hover:scale-[1.07] hover:mx-2.5 hover:my-2.5 transition-all duration-300 h-full flex flex-col justify-between">
+            <Card className="bg-slate-950/20 backdrop-blur-md border border-white/5 p-8 hover:border-primary/40 hover:bg-slate-900/30 transition-all duration-300 h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-8">
                   <Zap className="h-6 w-6 text-primary" />
@@ -99,7 +99,7 @@ export default function Achievements() {
                           </span>
                         </div>
                         <p className="text-xs sm:text-sm font-bold text-muted-foreground font-display uppercase tracking-widest">{item.role} • <span className="font-normal text-muted-foreground/85 font-sans lowercase tracking-normal">{item.meta}</span></p>
-                        <p className="text-sm text-muted-foreground/80 leading-relaxed font-sans mt-1.5">{item.desc}</p>
+                        <p className="text-sm text-muted-foreground/80 leading-relaxed font-sans mt-1.5 text-justify">{item.desc}</p>
                       </div>
                       
                       {item.verifyUrl && (

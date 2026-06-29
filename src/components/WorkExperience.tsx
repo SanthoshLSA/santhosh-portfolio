@@ -43,7 +43,7 @@ export default function WorkExperience() {
           {experiences.map((exp, idx) => (
             <Card
               key={idx}
-              className="bg-slate-950/20 backdrop-blur-md border border-white/5 hover:border-primary/40 hover:bg-slate-900/30 hover:scale-[1.07] hover:mx-2.5 hover:my-2.5 transition-all duration-300 group"
+              className="bg-slate-950/20 backdrop-blur-md border border-white/5 hover:border-primary/40 hover:bg-slate-900/30 transition-all duration-300 group"
             >
               <CardContent className="p-8 sm:p-10">
                 {/* Header Row */}
@@ -70,7 +70,7 @@ export default function WorkExperience() {
                   {exp.highlights.map((bullet, bIdx) => (
                     <li key={bIdx} className="flex items-start">
                       <ArrowRight className="h-4.5 w-4.5 text-primary shrink-0 mr-3 mt-1" />
-                      <span className="leading-relaxed">{bullet}</span>
+                      <span className="leading-relaxed text-justify">{bullet}</span>
                     </li>
                   ))}
                 </ul>
