@@ -1,7 +1,9 @@
 import * as React from "react";
 import { Cpu, Globe, Brain, Database, CheckCircle2 } from "lucide-react";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import AnimatedHeading from "./AnimatedHeading";
+import TiltCard from "./TiltCard";
 
 export default function Skills() {
   const skillCategories = [
@@ -43,16 +45,14 @@ export default function Skills() {
             <CheckCircle2 className="h-4 w-4" />
             <span>Expertise</span>
           </div>
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white font-display uppercase">
-            Technical Skillset
-          </h2>
+          <AnimatedHeading text="Technical Skillset" className="mx-auto" />
           <div className="mt-3 mx-auto h-[4px] w-16 rounded bg-primary" />
         </div>
 
         {/* Skills Grid */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
           {skillCategories.map((category, idx) => (
-            <Card
+            <TiltCard
               key={idx}
               className="frosted-glass frosted-glass-hover flex flex-col h-full group text-center"
             >
@@ -60,7 +60,7 @@ export default function Skills() {
                 <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 group-hover:scale-110 transition-transform duration-300 mb-3">
                   {category.icon}
                 </div>
-                <CardTitle className="text-lg font-bold text-white leading-tight font-display tracking-wide uppercase">
+                <CardTitle className="text-lg font-bold text-slate-900 dark:text-white leading-tight font-display tracking-wide uppercase">
                   {category.title}
                 </CardTitle>
                 <p className="text-xs sm:text-sm text-muted-foreground font-sans mt-2">
@@ -80,7 +80,7 @@ export default function Skills() {
                   ))}
                 </div>
               </CardContent>
-            </Card>
+            </TiltCard>
           ))}
         </div>
       </div>

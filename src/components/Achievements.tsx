@@ -1,7 +1,8 @@
 import * as React from "react";
 import { Trophy, Zap, Terminal } from "lucide-react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import AnimatedHeading from "./AnimatedHeading";
+import TiltCard from "./TiltCard";
 
 export default function Achievements() {
   const cpPoints = [
@@ -40,9 +41,7 @@ export default function Achievements() {
             <Trophy className="h-4 w-4" />
             <span>Honors</span>
           </div>
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white font-display uppercase">
-            Achievements
-          </h2>
+          <AnimatedHeading text="Achievements" className="mx-auto" />
           <div className="mt-3 mx-auto h-[4px] w-16 rounded bg-primary" />
         </div>
 
@@ -50,11 +49,11 @@ export default function Achievements() {
         <div className="grid gap-8 lg:grid-cols-12 max-w-7xl mx-auto">
           {/* Left Column: LeetCode & Coding */}
           <div className="lg:col-span-5 flex flex-col justify-between">
-            <Card className="bg-slate-950/20 backdrop-blur-md border border-white/5 p-8 flex-grow flex flex-col justify-between hover:border-primary/40 hover:bg-slate-900/30 transition-all duration-300 group">
+            <TiltCard className="frosted-glass frosted-glass-hover p-8 flex-grow flex flex-col justify-between group">
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <Terminal className="h-6 w-6 text-primary" />
-                  <h3 className="text-lg font-bold text-white font-display tracking-wide uppercase">Competitive Coding</h3>
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white font-display tracking-wide uppercase">Competitive Coding</h3>
                 </div>
 
                 <div className="bg-secondary/20 border border-white/5 rounded-xl p-5 text-center mb-8">
@@ -76,16 +75,16 @@ export default function Achievements() {
                   </a>
                 </Button>
               </div>
-            </Card>
+            </TiltCard>
           </div>
 
           {/* Right Column: Contests & Hackathons */}
           <div className="lg:col-span-7 space-y-4">
-            <Card className="bg-slate-950/20 backdrop-blur-md border border-white/5 p-8 hover:border-primary/40 hover:bg-slate-900/30 transition-all duration-300 h-full flex flex-col justify-between">
+            <TiltCard className="frosted-glass frosted-glass-hover p-8 h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-8">
                   <Zap className="h-6 w-6 text-primary" />
-                  <h3 className="text-lg font-bold text-white font-display tracking-wide uppercase">Contests & Hackathons</h3>
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white font-display tracking-wide uppercase">Contests & Hackathons</h3>
                 </div>
 
                 <div className="space-y-5">
@@ -93,7 +92,7 @@ export default function Achievements() {
                     <div key={idx} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-5 rounded-xl bg-secondary/30 border border-white/5 hover:border-primary/20 transition-all duration-200 gap-5">
                       <div className="space-y-2">
                         <div className="flex items-center gap-2.5 flex-wrap">
-                          <h4 className="text-base font-bold text-white leading-tight font-display tracking-wide uppercase">{item.title}</h4>
+                          <h4 className="text-base font-bold text-slate-900 dark:text-white leading-tight font-display tracking-wide uppercase">{item.title}</h4>
                           <span className="text-[9px] font-semibold text-primary bg-primary/5 border border-primary/25 px-2.5 py-0.5 rounded-full uppercase font-display tracking-wider">
                             {item.badge}
                           </span>
@@ -113,7 +112,7 @@ export default function Achievements() {
                   ))}
                 </div>
               </div>
-            </Card>
+            </TiltCard>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { FolderGit2, Briefcase, ShoppingCart, Film, MessageSquare, Activity, Gamepad2 } from "lucide-react";
 import ProjectCard, { ProjectProps } from "./ProjectCard";
+import AnimatedHeading from "./AnimatedHeading";
 
 export default function Projects() {
   const projectsData: (Omit<ProjectProps, "icon"> & { iconName: string })[] = [
@@ -15,7 +16,6 @@ export default function Projects() {
       ],
       tags: ["React.js", "Node.js", "Express.js", "MongoDB", "Clerk", "Sentry", "Vercel"],
       githubUrl: "https://github.com/SanthoshLSA",
-      demoUrl: "https://vercel.com",
     },
     {
       title: "Full-Stack E-commerce Website",
@@ -41,7 +41,7 @@ export default function Projects() {
       ],
       tags: ["Python", "LLM API", "JSON", "Streamlit", "Hugging Face Spaces"],
       githubUrl: "https://github.com/SanthoshLSA",
-      demoUrl: "https://huggingface.co/spaces",
+      demoUrl: "https://santhosh-cs-ai-chatbot.streamlit.app/",
     },
     {
       title: "Movie Recommendation System",
@@ -55,7 +55,7 @@ export default function Projects() {
       ],
       tags: ["Python", "Pandas", "NumPy", "Scikit-learn", "Streamlit"],
       githubUrl: "https://github.com/SanthoshLSA",
-      demoUrl: "https://streamlit.io",
+      demoUrl: "https://movie-recommendation-system-pnyhiy9hd2ofuljtf4leqr.streamlit.app/",
     },
     {
       title: "FractureDetect – Bone Fracture Detection",
@@ -113,9 +113,7 @@ export default function Projects() {
             <FolderGit2 className="h-4 w-4" />
             <span>Portfolio</span>
           </div>
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white font-display uppercase">
-            Projects
-          </h2>
+          <AnimatedHeading text="Projects" className="mx-auto" />
           <div className="mt-3 mx-auto h-[4px] w-16 rounded bg-primary" />
         </div>
 

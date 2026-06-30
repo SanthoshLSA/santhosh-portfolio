@@ -1,10 +1,50 @@
+"use client";
+
 import * as React from "react";
-import { Mail, Phone, ArrowDown } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import LeetCodeIcon from "./LeetCodeIcon";
 import { GithubIcon, LinkedinIcon } from "./BrandIcons";
 
 export default function Hero() {
+  const [hoveredIdx, setHoveredIdx] = React.useState<number | null>(null);
+
+  const getTranslation = (idx: number) => {
+    if (hoveredIdx === null) return "translateY(0)";
+    const distance = Math.abs(idx - hoveredIdx);
+    if (distance === 0) return "translateY(-24px)"; // Raised full
+    if (distance === 1) return "translateY(-12px)"; // Neighbors raise half
+    if (distance === 2) return "translateY(-6px)";  // Next neighbors raise quarter
+    return "translateY(0)";
+  };
+
+  const getTextColor = (idx: number) => {
+    if (hoveredIdx !== null) {
+      const distance = Math.abs(idx - hoveredIdx);
+      if (distance === 0) return "text-primary";
+      if (distance === 1) return "text-purple-300";
+      if (distance === 2) return "text-purple-100/90";
+    }
+    const colors = [
+      "text-primary", // S
+      "text-purple-400", // A
+      "text-purple-300", // N
+      "text-purple-200", // T
+      "text-purple-100", // H
+      "text-white", // O
+      "text-white", // S
+      "text-white", // H
+      "text-white", // [space]
+      "text-white", // A
+      "text-purple-100", // N
+      "text-purple-200", // A
+      "text-purple-300", // N
+      "text-purple-400", // T
+      "text-primary", // H
+    ];
+    return colors[idx] || "text-white";
+  };
+
   return (
     <section className="relative flex min-h-[calc(100vh-3.5rem)] items-center justify-center overflow-hidden py-24 grid-bg">
       {/* Ambient Cosmic Glow Spheres */}
@@ -14,11 +54,49 @@ export default function Hero() {
       <div className="container mx-auto px-4 text-center sm:px-6 lg:px-8 relative z-10">
         {/* Heading */}
         <h1 className="text-6xl font-bold tracking-tight sm:text-7xl md:text-8xl lg:text-9xl font-display">
-          <span className="block text-muted-foreground font-semibold text-xl sm:text-2xl uppercase tracking-widest mb-6">
+          <span className="block text-muted-foreground font-semibold text-xl sm:text-2xl uppercase tracking-widest mb-10">
             SYSTEM.INIT // HELLO WORLD
           </span>
-          <span className="block bg-gradient-to-r from-primary via-white to-primary bg-clip-text text-transparent pb-4 font-extrabold leading-none">
-            SANTHOSH ANANTH
+          <span 
+            className="block pb-4 font-extrabold leading-none cursor-default select-none"
+            onMouseLeave={() => setHoveredIdx(null)}
+          >
+            {["SANTHOSH", "ANANTH"].map((word, wIdx) => {
+              const wordStartIdx = wIdx === 0 ? 0 : 9; // "SANTHOSH " is length 9 (with space)
+              return (
+                <span key={wIdx} className="inline-block whitespace-nowrap">
+                  {word.split("").map((char, charIdx) => {
+                    const idx = wordStartIdx + charIdx;
+                    return (
+                      <span
+                        key={idx}
+                        onMouseEnter={() => setHoveredIdx(idx)}
+                        className={`inline-block transition-all duration-300 ease-out font-display tracking-tight ${getTextColor(
+                          idx
+                        )}`}
+                        style={{
+                          transform: getTranslation(idx),
+                        }}
+                      >
+                        {char}
+                      </span>
+                    );
+                  })}
+                  {wIdx === 0 && (
+                    <span
+                      onMouseEnter={() => setHoveredIdx(8)}
+                      className="inline-block text-white"
+                      style={{
+                        transform: getTranslation(8),
+                        minWidth: "0.25em",
+                      }}
+                    >
+                      {" "}
+                    </span>
+                  )}
+                </span>
+              );
+            })}
           </span>
         </h1>
 
@@ -37,48 +115,54 @@ export default function Hero() {
             <a href="#projects">Explore Projects</a>
           </Button>
           <Button
-            size="lg"
             variant="outline"
-            className="border-white/10 hover:border-primary hover:bg-primary/5 text-foreground font-bold tracking-widest uppercase text-sm px-8 py-6 rounded-xl transition-all duration-300 hover:scale-[1.02]"
+            size="lg"
+            className="border-white/10 hover:border-primary/50 hover:bg-primary/5 text-white font-bold tracking-widest uppercase text-sm px-8 py-6 rounded-xl transition-all duration-300 hover:scale-[1.02]"
             asChild
           >
-            <a href="/resume.pdf" download="Santhosh_Ananth_Resume.pdf">
-              Download CV
-            </a>
+            <a href="#contact">Get In Touch</a>
           </Button>
         </div>
 
-        {/* Social Badges Row */}
-        <div className="mt-20 flex items-center justify-center gap-5">
-          {[
-            { icon: <GithubIcon size={20} />, href: "https://github.com/SanthoshLSA", title: "GitHub" },
-            { icon: <LinkedinIcon size={20} />, href: "https://www.linkedin.com/in/santhosh-ananth-0a2602403/", title: "LinkedIn" },
-            { icon: <Mail className="h-5 w-5" />, href: "mailto:santhosh.ananth6@gmail.com", title: "Email" },
-            { icon: <Phone className="h-5 w-5" />, href: "tel:+918903266557", title: "Phone" },
-            { icon: <LeetCodeIcon size={20} />, href: "https://leetcode.com/SanthoshLegendSA/", title: "LeetCode" }
-          ].map((social, idx) => (
-            <a
-              key={idx}
-              href={social.href}
-              target={social.href.startsWith("mailto") || social.href.startsWith("tel") ? "_self" : "_blank"}
-              rel="noopener noreferrer"
-              className="flex items-center justify-center h-12 w-12 rounded-xl border border-white/5 bg-slate-950/30 backdrop-blur-sm text-muted-foreground hover:text-primary hover:border-primary hover:shadow-[0_0_15px_rgba(168,85,247,0.2)] transition-all duration-300 hover:scale-105"
-              title={social.title}
-            >
-              {social.icon}
-            </a>
-          ))}
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="mt-24 animate-float">
+        {/* Social Badges Grid */}
+        <div className="mt-16 flex justify-center items-center gap-6">
           <a
-            href="#about"
-            className="inline-flex items-center justify-center text-muted-foreground/80 hover:text-primary transition-colors"
+            href="https://github.com/SanthoshLSA/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-110 shadow-sm"
+            title="GitHub"
           >
-            <ArrowDown className="h-6 w-6 text-primary" />
+            <GithubIcon size={20} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/santhosh-ananth-0a2602403/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-110 shadow-sm"
+            title="LinkedIn"
+          >
+            <LinkedinIcon size={20} />
+          </a>
+          <a
+            href="https://leetcode.com/SanthoshLegendSA/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-110 shadow-sm"
+            title="LeetCode"
+          >
+            <LeetCodeIcon className="h-5 w-5" />
           </a>
         </div>
+      </div>
+
+      {/* Floating Scroll indicator */}
+      <div
+        onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground/60 hover:text-primary transition-colors cursor-pointer"
+      >
+        <span className="text-[10px] uppercase font-display tracking-widest font-semibold">Scroll Down</span>
+        <ArrowDown className="h-4 w-4 animate-bounce" />
       </div>
     </section>
   );

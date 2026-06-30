@@ -1,7 +1,9 @@
 import * as React from "react";
 import Image from "next/image";
 import { User, MapPin, GraduationCap, Languages, Award } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { CardContent } from "@/components/ui/card";
+import AnimatedHeading from "./AnimatedHeading";
+import TiltCard from "./TiltCard";
 
 export default function About() {
   const details = [
@@ -15,7 +17,7 @@ export default function About() {
       icon: <MapPin className="h-5.5 w-5.5 text-primary" />,
       label: "Location",
       value: "Chennai, Tamil Nadu, India",
-      subValue: "Hometown: Tiruchirappalli",
+      subValue: "",
     },
     {
       icon: <Languages className="h-5.5 w-5.5 text-primary" />,
@@ -43,9 +45,7 @@ export default function About() {
             <User className="h-4 w-4" />
             <span>Profile</span>
           </div>
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white font-display uppercase">
-            About Me
-          </h2>
+          <AnimatedHeading text="About Me" className="mx-auto" />
           <div className="mt-3 mx-auto h-[4px] w-16 rounded bg-primary" />
         </div>
 
@@ -61,7 +61,14 @@ export default function About() {
                   fill
                   sizes="(max-w-768px) 100vw, 420px"
                   priority
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  className="object-cover transition-all duration-500 group-hover:scale-[1.03]"
+                />
+                <Image
+                  src="/avatar-hover.jpg"
+                  alt="Santhosh Ananth Hover"
+                  fill
+                  sizes="(max-w-768px) 100vw, 420px"
+                  className="object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-[1.03]"
                 />
               </div>
               {/* Glowing decorative frame on hover */}
@@ -71,7 +78,7 @@ export default function About() {
 
           {/* Right: Content */}
           <div className="lg:col-span-7 space-y-8">
-            <h3 className="text-2xl sm:text-3xl font-bold text-white font-display tracking-wide uppercase leading-tight">
+            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display tracking-wide uppercase leading-tight">
               INTELLIGENT SYSTEMS & FULL-STACK DEVELOPMENT
             </h3>
             <p className="text-muted-foreground leading-relaxed text-base sm:text-lg">
@@ -84,7 +91,7 @@ export default function About() {
             {/* Frosted Details Cards */}
             <div className="grid gap-6 sm:grid-cols-2 pt-6">
               {details.map((detail, idx) => (
-                <Card
+                <TiltCard
                   key={idx}
                   className="frosted-glass frosted-glass-hover group"
                 >
@@ -96,7 +103,7 @@ export default function About() {
                       <p className="text-[11px] sm:text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">
                         {detail.label}
                       </p>
-                      <p className="text-base sm:text-lg font-bold text-white mt-1.5 font-display leading-tight">
+                      <p className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-1.5 font-display leading-tight">
                         {detail.value}
                       </p>
                       <p className="text-xs sm:text-sm text-muted-foreground/80 mt-1 font-sans">
@@ -104,7 +111,7 @@ export default function About() {
                       </p>
                     </div>
                   </CardContent>
-                </Card>
+                </TiltCard>
               ))}
             </div>
           </div>

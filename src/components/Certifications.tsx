@@ -1,8 +1,10 @@
 import * as React from "react";
 import { Award, ShieldCheck, BrainCircuit, Landmark, Globe } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import AnimatedHeading from "./AnimatedHeading";
+import TiltCard from "./TiltCard";
 
 export default function Certifications() {
   const certificationsData = [
@@ -47,18 +49,16 @@ export default function Certifications() {
             <Award className="h-4 w-4" />
             <span>Credentials</span>
           </div>
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white font-display uppercase">
-            Certifications
-          </h2>
+          <AnimatedHeading text="Certifications" className="mx-auto" />
           <div className="mt-3 mx-auto h-[4px] w-16 rounded bg-primary" />
         </div>
 
         {/* Certifications Grid */}
         <div className="grid gap-8 md:grid-cols-3 max-w-7xl mx-auto">
           {certificationsData.map((cert, idx) => (
-            <Card
+            <TiltCard
               key={idx}
-              className="bg-slate-950/20 backdrop-blur-md border border-white/5 hover:border-primary/40 hover:bg-slate-900/30 transition-all duration-300 flex flex-col justify-between group"
+              className="frosted-glass frosted-glass-hover flex flex-col justify-between group"
             >
               <CardContent className="p-8 flex-grow flex flex-col justify-between">
                 <div>
@@ -73,7 +73,7 @@ export default function Certifications() {
                   </div>
 
                   {/* Title & Organization */}
-                  <h3 className="text-lg font-bold text-white group-hover:text-primary transition-colors leading-snug font-display tracking-wide uppercase">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug font-display tracking-wide uppercase">
                     {cert.title}
                   </h3>
                   <p className="text-xs sm:text-sm text-muted-foreground/80 font-medium mt-3 flex items-center gap-2 font-display tracking-wider uppercase">
@@ -104,7 +104,7 @@ export default function Certifications() {
                   </a>
                 </Button>
               </CardContent>
-            </Card>
+            </TiltCard>
           ))}
         </div>
       </div>

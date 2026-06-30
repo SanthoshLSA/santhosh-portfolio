@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { Menu, X, Terminal } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -39,18 +38,10 @@ export default function Navbar() {
               {item.name}
             </a>
           ))}
-          <Button
-            variant="outline"
-            size="sm"
-            className="border-accent/40 hover:bg-accent/10 hover:border-accent text-accent font-semibold tracking-wider text-xs uppercase"
-            asChild
-          >
-            <a href="#contact">Connect</a>
-          </Button>
         </nav>
 
         {/* Mobile Toggle */}
-        <div className="flex lg:hidden">
+        <div className="flex items-center gap-3 lg:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="inline-flex items-center justify-center p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary focus:outline-none"
@@ -74,11 +65,6 @@ export default function Navbar() {
               {item.name}
             </a>
           ))}
-          <div className="pt-2 px-3">
-            <Button size="sm" className="w-full bg-accent hover:bg-accent/80 text-background font-bold tracking-wider uppercase text-xs" asChild>
-              <a href="#contact" onClick={() => setIsOpen(false)}>Connect</a>
-            </Button>
-          </div>
         </div>
       )}
     </header>

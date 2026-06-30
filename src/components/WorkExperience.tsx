@@ -1,7 +1,9 @@
 import * as React from "react";
 import { Briefcase, Building, Calendar, ArrowRight } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import AnimatedHeading from "./AnimatedHeading";
+import TiltCard from "./TiltCard";
 
 export default function WorkExperience() {
   const experiences = [
@@ -32,16 +34,14 @@ export default function WorkExperience() {
             <Briefcase className="h-4 w-4" />
             <span>Internship</span>
           </div>
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white font-display uppercase">
-            Work Experience
-          </h2>
+          <AnimatedHeading text="Work Experience" className="mx-auto" />
           <div className="mt-3 mx-auto h-[4px] w-16 rounded bg-primary" />
         </div>
 
         {/* Experience Cards */}
         <div className="max-w-6xl mx-auto space-y-8">
           {experiences.map((exp, idx) => (
-            <Card
+            <TiltCard
               key={idx}
               className="frosted-glass frosted-glass-hover group"
             >
@@ -49,7 +49,7 @@ export default function WorkExperience() {
                 {/* Header Row */}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 border-b border-white/5 pb-6 mb-6">
                   <div>
-                    <h3 className="text-2xl font-bold text-white group-hover:text-primary transition-colors font-display tracking-wide uppercase leading-snug">
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors font-display tracking-wide uppercase leading-snug">
                       {exp.role}
                     </h3>
                     <div className="flex items-center gap-2.5 mt-2.5 text-muted-foreground text-sm">
@@ -88,7 +88,7 @@ export default function WorkExperience() {
                   ))}
                 </div>
               </CardContent>
-            </Card>
+            </TiltCard>
           ))}
         </div>
       </div>

@@ -1,6 +1,8 @@
 import * as React from "react";
 import { GraduationCap, Calendar, MapPin, Award } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { CardContent } from "@/components/ui/card";
+import AnimatedHeading from "./AnimatedHeading";
+import TiltCard from "./TiltCard";
 
 export default function Education() {
   const educationData = [
@@ -12,7 +14,7 @@ export default function Education() {
       grade: "CGPA: 8.36 / 10.0 (as of 6th Semester)",
       highlights: [
         "Rigorous coursework in Data Structures, Algorithms, Databases, Machine Learning, and Deep Learning.",
-        "Active member of coding clubs and technical event organization teams.",
+        "Active member of art club and cultural event organisation teams.",
       ],
     },
     {
@@ -40,16 +42,14 @@ export default function Education() {
             <GraduationCap className="h-4 w-4" />
             <span>Academia</span>
           </div>
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white font-display uppercase">
-            Education
-          </h2>
+          <AnimatedHeading text="Education" className="mx-auto" />
           <div className="mt-3 mx-auto h-[4px] w-16 rounded bg-primary" />
         </div>
 
         {/* Education Cards Grid */}
         <div className="grid gap-8 md:grid-cols-2 max-w-7xl mx-auto">
           {educationData.map((edu, idx) => (
-            <Card
+            <TiltCard
               key={idx}
               className="frosted-glass frosted-glass-hover flex flex-col group"
             >
@@ -68,7 +68,7 @@ export default function Education() {
                   </div>
 
                   {/* Degree & Institution */}
-                  <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors leading-snug font-display tracking-wide uppercase">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug font-display tracking-wide uppercase">
                     {edu.degree}
                   </h3>
                   <p className="text-sm font-semibold text-muted-foreground/80 mt-1.5 font-display tracking-wider uppercase">
@@ -89,7 +89,7 @@ export default function Education() {
                   <span>{edu.grade}</span>
                 </div>
               </CardContent>
-            </Card>
+            </TiltCard>
           ))}
         </div>
       </div>

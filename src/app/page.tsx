@@ -12,12 +12,14 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import CursorGlow from "@/components/CursorGlow";
 import FloatingNav from "@/components/FloatingNav";
+import FireworkParticles from "@/components/FireworkParticles";
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground relative overflow-hidden">
       <CursorGlow />
       <FloatingNav />
+      <FireworkParticles />
       <Navbar />
       <main className="flex-grow">
         <Hero />

@@ -1,8 +1,11 @@
+"use client";
+
 import * as React from "react";
 import { ExternalLink } from "lucide-react";
 import { GithubIcon } from "./BrandIcons";
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import TiltCard from "./TiltCard";
 
 export interface ProjectProps {
   title: string;
@@ -24,7 +27,7 @@ export default function ProjectCard({
   demoUrl,
 }: ProjectProps) {
   return (
-    <Card className="frosted-glass frosted-glass-hover flex flex-col h-full group">
+    <TiltCard className="frosted-glass frosted-glass-hover flex flex-col h-full group">
       <CardHeader className="p-6 pb-4">
         <div className="flex justify-between items-start">
           <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 text-primary group-hover:scale-110 transition-transform duration-300">
@@ -34,7 +37,7 @@ export default function ProjectCard({
             {date}
           </span>
         </div>
-        <CardTitle className="text-xl font-bold text-white mt-5 group-hover:text-primary transition-colors font-display tracking-wide uppercase">
+        <CardTitle className="text-xl font-bold text-slate-900 dark:text-white mt-5 group-hover:text-primary transition-colors font-display tracking-wide uppercase">
           {title}
         </CardTitle>
       </CardHeader>
@@ -59,7 +62,7 @@ export default function ProjectCard({
           ))}
         </div>
       </CardContent>
-      <CardFooter className="p-6 pt-0 border-t border-white/5 mt-5 flex items-center justify-end gap-4 font-display">
+      <CardFooter className="p-6 pt-6 border-t border-white/5 mt-auto flex items-center justify-end gap-4 font-display">
         {githubUrl && (
           <a
             href={githubUrl}
@@ -83,6 +86,6 @@ export default function ProjectCard({
           </a>
         )}
       </CardFooter>
-    </Card>
+    </TiltCard>
   );
 }

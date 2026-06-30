@@ -2,8 +2,6 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -85,35 +83,27 @@
   --border: rgba(255, 255, 255, 0.08); /* Frosted border */
   --input: rgba(255, 255, 255, 0.06);
   --ring: oklch(0.60 0.22 295 / 60%);
-  --radius: 1.25rem; /* Smoother squircle-like radius */
-}
-
-.dark {
-  --background: oklch(0.09 0.015 285);
-  --foreground: oklch(0.97 0.008 255);
-  --card: rgba(255, 255, 255, 0.03);
-  --card-foreground: oklch(0.97 0.008 255);
-  --popover: rgba(15, 17, 26, 0.85);
-  --popover-foreground: oklch(0.97 0.008 255);
-  --primary: oklch(0.60 0.22 295);
-  --primary-foreground: oklch(0.99 0.005 0);
-  --accent: oklch(0.60 0.22 295);
-  --accent-foreground: oklch(0.99 0.005 0);
-  --secondary: rgba(255, 255, 255, 0.06);
-  --secondary-foreground: oklch(0.92 0.02 295);
-  --muted: oklch(0.12 0.015 285);
-  --muted-foreground: oklch(0.65 0.015 285);
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.06);
-  --ring: oklch(0.60 0.22 295 / 60%);
+  --radius: 1.25rem;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50 scroll-smooth;
+    user-drag: none;
+    -webkit-user-drag: none;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-primary/25 selection:text-foreground font-sans;
+    @apply bg-background text-foreground antialiased font-sans;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  input, textarea {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-display tracking-tight font-bold;
@@ -147,19 +137,41 @@
 /* Frosted Glassmorphism Panel Class */
 .frosted-glass {
   background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 1px 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .frosted-glass-hover {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+  transform-style: preserve-3d;
 }
 
 .frosted-glass-hover:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(168, 85, 247, 0.4);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px 0 rgba(168, 85, 247, 0.12), inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(168, 85, 247, 0.4) !important;
+  box-shadow: 0 12px 40px 0 rgba(168, 85, 247, 0.12), inset 0 1px 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Exact SVG outline flare drop shadow keyframe animation */
+@keyframes svg-flare-glow {
+  0% {
+    filter: drop-shadow(0 0 0px rgba(168, 85, 247, 0));
+    transform: scale(1);
+  }
+  30% {
+    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.95)) drop-shadow(0 0 3px rgba(168, 85, 247, 0.5));
+    transform: scale(1.15);
+  }
+  100% {
+    filter: drop-shadow(0 0 0px rgba(168, 85, 247, 0));
+    transform: scale(1);
+  }
+}
+
+.svg-flare-active {
+  animation: svg-flare-glow 0.45s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  transform-origin: center;
 }

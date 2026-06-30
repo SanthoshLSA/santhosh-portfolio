@@ -3,7 +3,9 @@
 import * as React from "react";
 import { Mail, Phone, MapPin, Send, MessageSquareCode } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { CardContent } from "@/components/ui/card";
+import AnimatedHeading from "./AnimatedHeading";
+import TiltCard from "./TiltCard";
 
 export default function Contact() {
   const [formState, setFormState] = React.useState({
@@ -18,12 +20,13 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Mock API call
+
+    // Simulate direct backend submission (e.g. REST API / DB endpoint post)
     setTimeout(() => {
       setIsSubmitting(false);
       setSuccess(true);
       setFormState({ name: "", email: "", subject: "", message: "" });
-      setTimeout(() => setSuccess(false), 5000);
+      setTimeout(() => setSuccess(false), 6000);
     }, 1500);
   };
 
@@ -43,74 +46,72 @@ export default function Contact() {
             <MessageSquareCode className="h-4 w-4" />
             <span>Connect</span>
           </div>
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white font-display uppercase">
-            Get In Touch
-          </h2>
+          <AnimatedHeading text="Get In Touch" className="mx-auto" />
           <div className="mt-3 mx-auto h-[4px] w-16 rounded bg-primary" />
         </div>
 
         <div className="grid gap-12 lg:grid-cols-12 max-w-7xl mx-auto">
           {/* Left Column: Direct Info */}
           <div className="lg:col-span-5 space-y-8">
-            <h3 className="text-2xl font-bold text-white font-display tracking-wide uppercase">Contact Information</h3>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white font-display tracking-wide uppercase">Contact Information</h3>
             <p className="text-muted-foreground text-base leading-relaxed font-sans">
               Feel free to reach out to me via email or phone. I usually respond within a few hours.
             </p>
 
-            <div className="space-y-6">
-              <Card className="bg-slate-950/20 backdrop-blur-md border border-white/5 hover:border-primary/40 transition-colors group">
-                <CardContent className="flex items-center space-x-5 p-5">
-                  <div className="p-4 rounded-lg bg-primary/5 border border-primary/15 group-hover:bg-primary/10 group-hover:border-primary/30 text-primary transition-colors shrink-0">
-                    <Mail className="h-6 w-6" />
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
+              <TiltCard className="frosted-glass frosted-glass-hover">
+                <CardContent className="flex items-center space-x-4.5 p-6">
+                  <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 text-primary shrink-0">
+                    <Mail className="h-5 w-5" />
                   </div>
                   <div>
                     <p className="text-[11px] sm:text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">Email</p>
                     <a
                       href="mailto:santhosh.ananth6@gmail.com"
-                      className="text-base sm:text-lg font-semibold text-white hover:text-primary transition-colors break-all font-display"
+                      className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white hover:text-primary transition-colors break-all font-display"
                     >
                       santhosh.ananth6@gmail.com
                     </a>
                   </div>
                 </CardContent>
-              </Card>
+              </TiltCard>
 
-              <Card className="bg-slate-950/20 backdrop-blur-md border border-white/5 hover:border-primary/40 transition-colors group">
-                <CardContent className="flex items-center space-x-5 p-5">
-                  <div className="p-4 rounded-lg bg-primary/5 border border-primary/15 group-hover:bg-primary/10 group-hover:border-primary/30 text-primary transition-colors shrink-0">
-                    <Phone className="h-6 w-6" />
+              <TiltCard className="frosted-glass frosted-glass-hover">
+                <CardContent className="flex items-center space-x-4.5 p-6">
+                  <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 text-primary shrink-0">
+                    <Phone className="h-5 w-5" />
                   </div>
                   <div>
                     <p className="text-[11px] sm:text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">Phone</p>
                     <a
                       href="tel:+918903266557"
-                      className="text-base sm:text-lg font-semibold text-white hover:text-primary transition-colors font-display"
+                      className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white hover:text-primary transition-colors font-display"
                     >
                       +91 890326 6557
                     </a>
                   </div>
                 </CardContent>
-              </Card>
+              </TiltCard>
 
-              <Card className="bg-slate-950/20 backdrop-blur-md border border-white/5 hover:border-primary/40 transition-colors group">
-                <CardContent className="flex items-center space-x-5 p-5">
-                  <div className="p-4 rounded-lg bg-primary/5 border border-primary/15 group-hover:bg-primary/10 group-hover:border-primary/30 text-primary transition-colors shrink-0">
-                    <MapPin className="h-6 w-6" />
+              <TiltCard className="frosted-glass frosted-glass-hover">
+                <CardContent className="flex items-center space-x-4.5 p-6">
+                  <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 text-primary shrink-0">
+                    <MapPin className="h-5 w-5" />
                   </div>
                   <div>
                     <p className="text-[11px] sm:text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">Location</p>
-                    <span className="text-base sm:text-lg font-semibold text-white font-display uppercase tracking-wider">
+                    <span className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white font-display uppercase tracking-wider">
                       Chennai, Tamil Nadu, India
                     </span>
                   </div>
                 </CardContent>
-              </Card>
+              </TiltCard>
             </div>
           </div>
 
           {/* Right Column: Contact Form */}
           <div className="lg:col-span-7">
-            <Card className="bg-slate-950/20 backdrop-blur-md border border-white/5 p-8 sm:p-10">
+            <TiltCard className="frosted-glass frosted-glass-hover p-8 sm:p-10">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid gap-6 sm:grid-cols-2">
                   <div className="space-y-2">
@@ -124,7 +125,7 @@ export default function Contact() {
                       value={formState.name}
                       onChange={handleChange}
                       placeholder="John Doe"
-                      className="w-full rounded-md border border-white/10 bg-slate-950/40 px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors font-sans"
+                      className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-white/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans"
                     />
                   </div>
                   <div className="space-y-2">
@@ -138,7 +139,7 @@ export default function Contact() {
                       value={formState.email}
                       onChange={handleChange}
                       placeholder="john@example.com"
-                      className="w-full rounded-md border border-white/10 bg-slate-950/40 px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors font-sans"
+                      className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-white/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans"
                     />
                   </div>
                 </div>
@@ -153,7 +154,7 @@ export default function Contact() {
                     value={formState.subject}
                     onChange={handleChange}
                     placeholder="Project Inquiry / Internship Role"
-                    className="w-full rounded-md border border-white/10 bg-slate-950/40 px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors font-sans"
+                    className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-white/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans"
                   />
                 </div>
                 <div className="space-y-2">
@@ -167,7 +168,7 @@ export default function Contact() {
                     value={formState.message}
                     onChange={handleChange}
                     placeholder="Describe your request..."
-                    className="w-full rounded-md border border-white/10 bg-slate-950/40 px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors font-sans resize-none"
+                    className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-white/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans resize-none"
                   />
                 </div>
 
@@ -186,12 +187,12 @@ export default function Contact() {
                 </Button>
 
                 {success && (
-                  <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-md text-xs sm:text-sm text-center font-semibold mt-3 animate-fade-in font-display tracking-wider uppercase">
-                    Message sent successfully.
+                  <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl text-xs sm:text-sm text-center font-semibold mt-3 animate-fade-in font-display tracking-wider uppercase">
+                    Message sent successfully! I will get back to you shortly.
                   </div>
                 )}
               </form>
-            </Card>
+            </TiltCard>
           </div>
         </div>
       </div>
