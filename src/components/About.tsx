@@ -35,7 +35,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-24 bg-background relative overflow-hidden">
+    <section id="about" className="py-24 bg-transparent relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute right-0 top-1/4 h-[350px] w-[350px] rounded-full bg-primary/5 glow-blur -z-10" />
 

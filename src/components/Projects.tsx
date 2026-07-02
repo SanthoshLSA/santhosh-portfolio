@@ -103,7 +103,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-24 bg-background relative overflow-hidden">
+    <section id="projects" className="py-24 bg-transparent relative overflow-hidden">
       {/* Background glow blob */}
       <div className="absolute right-10 bottom-1/4 h-[350px] w-[350px] rounded-full bg-primary/5 glow-blur -z-10" />
 

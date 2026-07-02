@@ -66,7 +66,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-background relative overflow-hidden">
+    <section id="contact" className="py-24 bg-transparent relative overflow-hidden">
       {/* Decorative Blob */}
       <div className="absolute right-1/4 top-1/3 h-[300px] w-[300px] rounded-full bg-primary/5 glow-blur -z-10" />
 

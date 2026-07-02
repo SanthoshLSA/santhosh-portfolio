@@ -32,7 +32,7 @@ export default function Education() {
   ];
 
   return (
-    <section id="education" className="py-24 bg-background relative overflow-hidden">
+    <section id="education" className="py-24 bg-transparent relative overflow-hidden">
       {/* Background radial glow */}
       <div className="absolute right-10 bottom-10 h-[300px] w-[300px] rounded-full bg-primary/5 glow-blur -z-10" />
 

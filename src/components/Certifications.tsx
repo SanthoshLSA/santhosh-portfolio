@@ -39,7 +39,7 @@ export default function Certifications() {
   ];
 
   return (
-    <section id="certifications" className="py-24 bg-background relative overflow-hidden">
+    <section id="certifications" className="py-24 bg-transparent relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute right-10 top-1/3 h-[300px] w-[300px] rounded-full bg-primary/5 glow-blur -z-10" />
 

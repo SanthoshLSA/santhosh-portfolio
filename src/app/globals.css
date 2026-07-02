@@ -175,3 +175,29 @@
   animation: svg-flare-glow 0.45s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   transform-origin: center;
 }
+
+/* Infinite horizontal marquee ribbon animations */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Hide default cursor on desktop when custom cursor is active */
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}

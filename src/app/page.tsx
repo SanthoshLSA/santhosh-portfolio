@@ -13,11 +13,15 @@ import Footer from "@/components/Footer";
 import CursorGlow from "@/components/CursorGlow";
 import FloatingNav from "@/components/FloatingNav";
 import FireworkParticles from "@/components/FireworkParticles";
+import CosmicBackground from "@/components/CosmicBackground";
+import MagneticCursor from "@/components/MagneticCursor";
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground relative overflow-hidden">
       <CursorGlow />
+      <CosmicBackground />
+      <MagneticCursor />
       <FloatingNav />
       <FireworkParticles />
       <Navbar />
