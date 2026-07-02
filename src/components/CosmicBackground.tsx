@@ -163,7 +163,7 @@ export default function CosmicBackground() {
     }
 
     // --- Spawn Shooting Stars ---
-    if (Math.random() < 0.005 && shootingStars.length < 3) {
+    if (Math.random() < 0.018 && shootingStars.length < 5) {
       const startX = Math.random() * canvas.width;
       const startY = Math.random() * (canvas.height * 0.85);
       const speed = 10 + Math.random() * 8;

@@ -28,7 +28,7 @@ export default function MagneticCursor() {
       const target = e.target as HTMLElement | null;
       if (target) {
         const isInteractive = target.closest(
-          "a, button, [role='button'], input, textarea, select, svg, .cursor-pointer, .frosted-glass-hover"
+          "a, button, [role='button'], input, textarea, select, svg, .cursor-pointer"
         );
         setIsHovered(!!isInteractive);
       }
