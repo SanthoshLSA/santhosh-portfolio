@@ -10,6 +10,7 @@ export default function MagneticCursor() {
   const ringCoords = React.useRef({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
+  const isHoveredRef = React.useRef(false);
 
   React.useEffect(() => {
     // Disable on mobile/touch screens
@@ -30,7 +31,9 @@ export default function MagneticCursor() {
         const isInteractive = target.closest(
           "a, button, [role='button'], input, textarea, select, svg, .cursor-pointer"
         );
-        setIsHovered(!!isInteractive);
+        const hovered = !!isInteractive;
+        setIsHovered(hovered);
+        isHoveredRef.current = hovered;
       }
     };
 
@@ -48,8 +51,9 @@ export default function MagneticCursor() {
       const ring = ringRef.current;
 
       if (dot && ring) {
-        // Move core dot instantly
-        dot.style.transform = `translate3d(${mouseCoords.current.x}px, ${mouseCoords.current.y}px, 0) translate(-50%, -50%)`;
+        // Move core crosshair instantly, apply scale if hovered
+        const scaleVal = isHoveredRef.current ? 1.25 : 1.0;
+        dot.style.transform = `translate3d(${mouseCoords.current.x}px, ${mouseCoords.current.y}px, 0) translate(-50%, -50%) scale(${scaleVal})`;
 
         // Lerp ring with lag coefficient
         const ease = 0.15;
@@ -78,13 +82,24 @@ export default function MagneticCursor() {
 
   return (
     <>
-      {/* Central Core Micro-Dot */}
+      {/* Central Video Game Crosshair Reticle */}
       <div
         ref={dotRef}
-        className={`fixed top-0 left-0 w-2 h-2 bg-primary rounded-full pointer-events-none z-50 transition-opacity duration-300 ${
+        className={`fixed top-0 left-0 w-4.5 h-4.5 pointer-events-none z-50 transition-opacity duration-300 ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}
-      />
+      >
+        {/* Top tick */}
+        <div className="absolute top-0 left-1/2 w-[1.5px] h-[4px] bg-primary -translate-x-1/2" />
+        {/* Bottom tick */}
+        <div className="absolute bottom-0 left-1/2 w-[1.5px] h-[4px] bg-primary -translate-x-1/2" />
+        {/* Left tick */}
+        <div className="absolute left-0 top-1/2 h-[1.5px] w-[4px] bg-primary -translate-y-1/2" />
+        {/* Right tick */}
+        <div className="absolute right-0 top-1/2 h-[1.5px] w-[4px] bg-primary -translate-y-1/2" />
+        {/* Center dot */}
+        <div className="absolute top-1/2 left-1/2 w-[2px] h-[2px] bg-primary rounded-full -translate-x-1/2 -translate-y-1/2 shadow-[0_0_4px_rgba(168,85,247,0.8)]" />
+      </div>
       {/* Trailing Ambient Glow Ring */}
       <div
         ref={ringRef}
