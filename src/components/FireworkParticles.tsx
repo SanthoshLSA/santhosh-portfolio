@@ -12,7 +12,7 @@ interface Particle {
   color: string;
   size: number;
   alpha: number;
-  shape: "circle" | "square" | "teardrop";
+  shape: "circle" | "square" | "teardrop" | "triangle" | "star";
   history?: { x: number; y: number }[];
 }
 
@@ -24,7 +24,7 @@ const PRESETS: Record<
     count: () => number;
     speed: () => number;
     size: () => number;
-    shape: "circle" | "square" | "teardrop";
+    shape: "circle" | "square" | "teardrop" | "triangle" | "star";
     decayRate: number;
     friction: number;
     gravity: number;
@@ -67,6 +67,30 @@ const PRESETS: Record<
     gravity: 0.025,
     trailLen: 16,
   },
+  stardust: {
+    colors: ["#fef08a", "#fde047", "#eab308", "#ffffff", "#fef9c3"],
+    sparkColors: ["#fef08a", "#fde047", "#ffffff"],
+    count: () => 90 + Math.floor(Math.random() * 30),
+    speed: () => 1.5 + Math.random() * 3.5,
+    size: () => 2 + Math.random() * 3,
+    shape: "star",
+    decayRate: 0.006,
+    friction: 0.98,
+    gravity: 0.01,
+    trailLen: 5,
+  },
+  quantum: {
+    colors: ["#0ea5e9", "#38bdf8", "#d946ef", "#f0abfc", "#7dd3fc"],
+    sparkColors: ["#0ea5e9", "#d946ef", "#ffffff"],
+    count: () => 35 + Math.floor(Math.random() * 15),
+    speed: () => 3.0 + Math.random() * 6.0,
+    size: () => 4 + Math.random() * 5,
+    shape: "triangle",
+    decayRate: 0.015,
+    friction: 0.99,
+    gravity: -0.01, // floating up slightly
+    trailLen: 20,
+  }
 };
 
 export default function FireworkParticles() {
@@ -90,12 +114,33 @@ export default function FireworkParticles() {
 
   const drawParticle = React.useCallback(
     (ctx: CanvasRenderingContext2D, p: Particle) => {
+      const s = p.size;
       if (p.shape === "square") {
-        const s = p.size;
         ctx.fillRect(p.x - s / 2, p.y - s / 2, s, s);
+      } else if (p.shape === "triangle") {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y - s);
+        ctx.lineTo(p.x + s * 0.866, p.y + s / 2);
+        ctx.lineTo(p.x - s * 0.866, p.y + s / 2);
+        ctx.closePath();
+        ctx.fill();
+      } else if (p.shape === "star") {
+        ctx.beginPath();
+        for (let i = 0; i < 5; i++) {
+          ctx.lineTo(
+            p.x + Math.cos(((18 + i * 72) * Math.PI) / 180) * s,
+            p.y - Math.sin(((18 + i * 72) * Math.PI) / 180) * s
+          );
+          ctx.lineTo(
+            p.x + Math.cos(((54 + i * 72) * Math.PI) / 180) * (s / 2),
+            p.y - Math.sin(((54 + i * 72) * Math.PI) / 180) * (s / 2)
+          );
+        }
+        ctx.closePath();
+        ctx.fill();
       } else {
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, s / 2, 0, Math.PI * 2);
         ctx.fill();
       }
     },

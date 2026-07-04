@@ -46,6 +46,20 @@ export default function MagneticCursor() {
       glow: "shadow-[0_0_4px_rgba(34,197,94,0.8)]",
       glowHover: "shadow-[0_0_8px_rgba(34,197,94,1)]",
     },
+    stardust: {
+      ringIdle: "border-yellow-400/50 shadow-[0_0_8px_rgba(234,179,8,0.15)]",
+      ringHover: "border-yellow-400 bg-yellow-400/10 shadow-[0_0_20px_rgba(234,179,8,0.4)]",
+      dotColor: "bg-yellow-400",
+      glow: "shadow-[0_0_4px_rgba(234,179,8,0.8)]",
+      glowHover: "shadow-[0_0_8px_rgba(234,179,8,1)]",
+    },
+    quantum: {
+      ringIdle: "border-cyan-400/50 shadow-[0_0_8px_rgba(14,165,233,0.15)]",
+      ringHover: "border-cyan-400 bg-cyan-400/10 shadow-[0_0_20px_rgba(14,165,233,0.4)]",
+      dotColor: "bg-cyan-400",
+      glow: "shadow-[0_0_4px_rgba(14,165,233,0.8)]",
+      glowHover: "shadow-[0_0_8px_rgba(14,165,233,1)]",
+    },
   };
 
   React.useEffect(() => {
@@ -113,7 +127,7 @@ export default function MagneticCursor() {
       {/* Crosshair reticle — shape changes per preset */}
       <div
         ref={dotRef}
-        className={`fixed top-0 left-0 pointer-events-none z-[55] transition-opacity duration-300 ${
+        className={`fixed top-0 left-0 pointer-events-none z-[70] transition-opacity duration-300 ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}
         style={{ width: "20px", height: "20px" }}
@@ -162,12 +176,34 @@ export default function MagneticCursor() {
             <div className={`absolute top-1/2 left-1/2 w-[2px] h-[2px] ${cfg.dotColor} -translate-x-1/2 -translate-y-1/2 ${isHovered ? cfg.glowHover : cfg.glow}`} />
           </>
         )}
+
+        {/* ── STARDUST: diamond ── */}
+        {preset === "stardust" && (
+          <>
+            <div
+              className={`absolute top-1/2 left-1/2 w-[6px] h-[6px] ${cfg.dotColor} border border-yellow-200/50`}
+              style={{ transform: "translate(-50%,-50%) rotate(45deg)" }}
+            />
+            <div className={`absolute top-1/2 left-1/2 w-[2px] h-[2px] bg-white rounded-full -translate-x-1/2 -translate-y-1/2 ${isHovered ? cfg.glowHover : cfg.glow}`} />
+          </>
+        )}
+
+        {/* ── QUANTUM: triangle ── */}
+        {preset === "quantum" && (
+          <>
+            <div
+              className={`absolute top-1/2 left-1/2 w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-b-[7px] border-b-cyan-400`}
+              style={{ transform: "translate(-50%,-50%)" }}
+            />
+            <div className={`absolute top-1/2 left-1/2 w-[2px] h-[2px] bg-white rounded-full -translate-x-1/2 -translate-y-1/2 ${isHovered ? cfg.glowHover : cfg.glow}`} />
+          </>
+        )}
       </div>
 
       {/* Trailing ring */}
       <div
         ref={ringRef}
-        className={`fixed top-0 left-0 rounded-full pointer-events-none z-[55] transition-all duration-300 ease-out mix-blend-screen ${
+        className={`fixed top-0 left-0 rounded-full pointer-events-none z-[70] transition-all duration-300 ease-out mix-blend-screen ${
           isVisible ? "opacity-100" : "opacity-0"
         } ${
           isHovered
