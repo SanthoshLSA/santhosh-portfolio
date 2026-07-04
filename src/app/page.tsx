@@ -15,6 +15,7 @@ import FloatingNav from "@/components/FloatingNav";
 import FireworkParticles from "@/components/FireworkParticles";
 import CosmicBackground from "@/components/CosmicBackground";
 import MagneticCursor from "@/components/MagneticCursor";
+import FireworkSettings from "@/components/FireworkSettings";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <CursorGlow />
       <CosmicBackground />
       <MagneticCursor />
+      <FireworkSettings />
       <FloatingNav />
       <FireworkParticles />
       <Navbar />

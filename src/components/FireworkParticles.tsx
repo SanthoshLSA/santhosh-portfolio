@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import type { FireworkPreset } from "./FireworkSettings";
 
 interface Particle {
   type: "sparkle" | "explosion";
@@ -11,8 +12,62 @@ interface Particle {
   color: string;
   size: number;
   alpha: number;
-  history?: { x: number; y: number }[]; // Pos history for trails
+  shape: "circle" | "square" | "teardrop";
+  history?: { x: number; y: number }[];
 }
+
+const PRESETS: Record<
+  FireworkPreset,
+  {
+    colors: string[];
+    sparkColors: string[];
+    count: () => number;
+    speed: () => number;
+    size: () => number;
+    shape: "circle" | "square" | "teardrop";
+    decayRate: number;
+    friction: number;
+    gravity: number;
+    trailLen: number;
+  }
+> = {
+  cosmic: {
+    colors: ["#a855f7", "#c084fc", "#d8b4fe", "#ffffff", "#f5d0fe"],
+    sparkColors: ["#a855f7", "#c084fc", "#ffffff"],
+    count: () => 50 + Math.floor(Math.random() * 15),
+    speed: () => 1.8 + Math.random() * 4.2,
+    size: () => 4 + Math.random() * 6,
+    shape: "circle",
+    decayRate: 0.009,
+    friction: 0.97,
+    gravity: 0.06,
+    trailLen: 12,
+  },
+  inferno: {
+    colors: ["#ef4444", "#f97316", "#fbbf24", "#fef08a", "#dc2626"],
+    sparkColors: ["#f97316", "#fbbf24", "#ef4444"],
+    count: () => 70 + Math.floor(Math.random() * 20),
+    speed: () => 2.5 + Math.random() * 5.5,
+    size: () => 3 + Math.random() * 5,
+    shape: "teardrop",
+    decayRate: 0.013,
+    friction: 0.96,
+    gravity: 0.1,
+    trailLen: 9,
+  },
+  matrix: {
+    colors: ["#22c55e", "#4ade80", "#86efac", "#00ffcc", "#d9f99d"],
+    sparkColors: ["#22c55e", "#4ade80", "#00ffcc"],
+    count: () => 40 + Math.floor(Math.random() * 10),
+    speed: () => 1.2 + Math.random() * 2.8,
+    size: () => 5 + Math.random() * 7,
+    shape: "square",
+    decayRate: 0.007,
+    friction: 0.985,
+    gravity: 0.025,
+    trailLen: 16,
+  },
+};
 
 export default function FireworkParticles() {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
@@ -20,8 +75,8 @@ export default function FireworkParticles() {
   const requestRef = React.useRef<number | null>(null);
   const isMouseDownRef = React.useRef(false);
   const updateRef = React.useRef<() => void>(() => {});
+  const presetRef = React.useRef<FireworkPreset>("cosmic");
 
-  // Sync canvas size to document height & window width
   const resizeCanvas = React.useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -32,6 +87,20 @@ export default function FireworkParticles() {
       window.innerHeight
     );
   }, []);
+
+  const drawParticle = React.useCallback(
+    (ctx: CanvasRenderingContext2D, p: Particle) => {
+      if (p.shape === "square") {
+        const s = p.size;
+        ctx.fillRect(p.x - s / 2, p.y - s / 2, s, s);
+      } else {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    },
+    []
+  );
 
   const updateAndDraw = React.useCallback(() => {
     const canvas = canvasRef.current;
@@ -44,10 +113,11 @@ export default function FireworkParticles() {
     const particles = particlesRef.current;
     if (particles.length === 0 && !isMouseDownRef.current) {
       requestRef.current = null;
-      return; // Stop loop when idle
+      return;
     }
 
     const nextParticles: Particle[] = [];
+    const preset = PRESETS[presetRef.current];
 
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
@@ -57,19 +127,15 @@ export default function FireworkParticles() {
         p.y += p.vy;
         p.alpha -= 0.05;
       } else {
-        // Log position history for trails
         if (!p.history) p.history = [];
         p.history.push({ x: p.x, y: p.y });
-        if (p.history.length > 12) {
-          p.history.shift();
-        }
+        if (p.history.length > preset.trailLen) p.history.shift();
 
-        // Apply velocities
         p.x += p.vx;
         p.y += p.vy;
-        p.vx *= 0.97; // Slightly less friction for longer spread
-        p.vy = p.vy * 0.97 + 0.06; // Gravity arcs down faster
-        p.alpha -= 0.009; // Slower decay so trails stretch longer
+        p.vx *= preset.friction;
+        p.vy = p.vy * preset.friction + preset.gravity;
+        p.alpha -= preset.decayRate;
       }
 
       if (p.alpha > 0) {
@@ -77,49 +143,49 @@ export default function FireworkParticles() {
 
         ctx.save();
         ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.strokeStyle = p.color;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = p.color;
 
+        // Draw trail
         if (p.type === "explosion" && p.history && p.history.length > 1) {
-          // Draw classic long firework trail
           ctx.beginPath();
           ctx.moveTo(p.history[0].x, p.history[0].y);
           for (let h = 1; h < p.history.length; h++) {
             ctx.lineTo(p.history[h].x, p.history[h].y);
           }
-          ctx.strokeStyle = p.color;
-          ctx.lineWidth = p.size * 0.45;
+          ctx.lineWidth = p.shape === "square" ? p.size * 0.3 : p.size * 0.45;
           ctx.lineCap = "round";
           ctx.lineJoin = "round";
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = p.color;
           ctx.stroke();
         }
 
-        // Draw particle core
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.shadowBlur = 6;
-        ctx.shadowColor = p.color;
-        ctx.fill();
-
+        // Draw core
+        drawParticle(ctx, p);
         ctx.restore();
       }
     }
 
     particlesRef.current = nextParticles;
     requestRef.current = requestAnimationFrame(updateRef.current);
-  }, []);
+  }, [drawParticle]);
 
   React.useEffect(() => {
     updateRef.current = updateAndDraw;
   }, [updateAndDraw]);
 
   React.useEffect(() => {
-    // Disable all calculations completely on mobile viewports
     if (window.innerWidth < 768) return;
 
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
+
+    // Listen for preset changes
+    const handlePresetChange = (e: Event) => {
+      presetRef.current = (e as CustomEvent<FireworkPreset>).detail;
+    };
+    window.addEventListener("firework-preset", handlePresetChange);
 
     const handleMouseDown = (e: MouseEvent) => {
       if (window.innerWidth < 768) return;
@@ -130,26 +196,12 @@ export default function FireworkParticles() {
         svg.classList.remove("svg-flare-active");
         void svg.getBoundingClientRect();
         svg.classList.add("svg-flare-active");
-        
-        svg.addEventListener(
-          "animationend",
-          () => {
-            svg.classList.remove("svg-flare-active");
-          },
-          { once: true }
-        );
+        svg.addEventListener("animationend", () => svg.classList.remove("svg-flare-active"), { once: true });
       }
 
-      if (
-        target.closest(
-          "a, button, input, textarea, select, iframe, [role='button'], .cursor-pointer, .frosted-glass-hover"
-        )
-      ) {
-        return;
-      }
+      if (target.closest("a, button, input, textarea, select, iframe, [role='button'], .cursor-pointer, .frosted-glass-hover")) return;
 
       isMouseDownRef.current = true;
-
       if (requestRef.current === null) {
         requestRef.current = requestAnimationFrame(updateRef.current);
       }
@@ -157,22 +209,21 @@ export default function FireworkParticles() {
 
     const handleMouseMove = (e: MouseEvent) => {
       if (window.innerWidth < 768 || !isMouseDownRef.current) return;
-
-      const colors = ["#a855f7", "#c084fc", "#d8b4fe", "#ffffff", "#f5d0fe"];
-      const particles = particlesRef.current;
+      const preset = PRESETS[presetRef.current];
 
       for (let i = 0; i < 2; i++) {
         const angle = Math.random() * Math.PI * 2;
         const speed = 0.2 + Math.random() * 0.5;
-        particles.push({
+        particlesRef.current.push({
           type: "sparkle",
           x: e.clientX,
           y: e.clientY + window.scrollY,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
-          color: colors[Math.floor(Math.random() * colors.length)],
+          color: preset.sparkColors[Math.floor(Math.random() * preset.sparkColors.length)],
           size: 2.5 + Math.random() * 2,
           alpha: 0.8,
+          shape: preset.shape,
         });
       }
     };
@@ -181,29 +232,28 @@ export default function FireworkParticles() {
       if (window.innerWidth < 768 || !isMouseDownRef.current) return;
       isMouseDownRef.current = false;
 
-      const colors = ["#a855f7", "#c084fc", "#d8b4fe", "#ffffff", "#f5d0fe"];
-      const particles = particlesRef.current;
-      const count = 50 + Math.floor(Math.random() * 15);
+      const preset = PRESETS[presetRef.current];
+      const count = preset.count();
+      const maxAllowedParticles = 200;
 
-      // Limit concurrent particles to prevent rendering lag on rapid clicks
-      const maxAllowedParticles = 180;
-      if (particles.length + count > maxAllowedParticles) {
-        const excess = (particles.length + count) - maxAllowedParticles;
-        particlesRef.current = particles.slice(excess);
+      if (particlesRef.current.length + count > maxAllowedParticles) {
+        const excess = particlesRef.current.length + count - maxAllowedParticles;
+        particlesRef.current = particlesRef.current.slice(excess);
       }
 
       for (let i = 0; i < count; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = 1.8 + Math.random() * 4.2;
+        const speed = preset.speed();
         particlesRef.current.push({
           type: "explosion",
           x: e.clientX,
           y: e.clientY + window.scrollY,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          size: 4 + Math.random() * 6,
+          color: preset.colors[Math.floor(Math.random() * preset.colors.length)],
+          size: preset.size(),
           alpha: 1,
+          shape: preset.shape,
           history: [],
         });
       }
@@ -215,12 +265,11 @@ export default function FireworkParticles() {
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("firework-preset", handlePresetChange);
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
-      if (requestRef.current) {
-        cancelAnimationFrame(requestRef.current);
-      }
+      if (requestRef.current) cancelAnimationFrame(requestRef.current);
     };
   }, [resizeCanvas]);
 
