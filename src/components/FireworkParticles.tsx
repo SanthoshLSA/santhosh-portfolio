@@ -183,19 +183,26 @@ export default function FireworkParticles() {
 
       const colors = ["#a855f7", "#c084fc", "#d8b4fe", "#ffffff", "#f5d0fe"];
       const particles = particlesRef.current;
-      const count = 70 + Math.floor(Math.random() * 20);
+      const count = 50 + Math.floor(Math.random() * 15);
+
+      // Limit concurrent particles to prevent rendering lag on rapid clicks
+      const maxAllowedParticles = 180;
+      if (particles.length + count > maxAllowedParticles) {
+        const excess = (particles.length + count) - maxAllowedParticles;
+        particlesRef.current = particles.slice(excess);
+      }
 
       for (let i = 0; i < count; i++) {
         const angle = Math.random() * Math.PI * 2;
         const speed = 1.8 + Math.random() * 4.2;
-        particles.push({
+        particlesRef.current.push({
           type: "explosion",
           x: e.clientX,
           y: e.clientY + window.scrollY,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
           color: colors[Math.floor(Math.random() * colors.length)],
-          size: 5 + Math.random() * 7,
+          size: 4 + Math.random() * 6,
           alpha: 1,
           history: [],
         });
