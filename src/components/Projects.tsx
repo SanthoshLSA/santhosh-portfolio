@@ -1,11 +1,24 @@
 import * as React from "react";
-import { FolderGit2, Briefcase, ShoppingCart, Film, MessageSquare, Activity, Gamepad2 } from "lucide-react";
+import { FolderGit2, Briefcase, ShoppingCart, Film, MessageSquare, Activity, TrendingUp } from "lucide-react";
 import ProjectCard, { ProjectProps } from "./ProjectCard";
 import AnimatedHeading from "./AnimatedHeading";
 import ScrollReveal from "./ScrollReveal";
 
 export default function Projects() {
   const projectsData: (Omit<ProjectProps, "icon"> & { iconName: string })[] = [
+    {
+      title: "Autonomous Investment Research Agent",
+      date: "Feb 2026",
+      iconName: "investment",
+      description: [
+        "Architected a multi-agent LangGraph workflow orchestrating market data collection, technical analysis, sentiment scoring, and portfolio optimization.",
+        "Built a simulated trading engine with SQLite-backed portfolios, live price valuation, and AI-recommended rebalancing.",
+        "Deployed a Streamlit dashboard with candlestick charts, risk heatmaps, backtesting, and human-in-the-loop approval gate.",
+      ],
+      tags: ["Python", "LangGraph", "LangChain", "Streamlit", "Plotly", "SQLite"],
+      githubUrl: "https://github.com/SanthoshLSA",
+      demoUrl: "https://autonomous-investment-agent-live.streamlit.app/",
+    },
     {
       title: "Full-Stack Job Portal Website",
       date: "Nov 2025 – Jan 2026",
@@ -70,17 +83,6 @@ export default function Projects() {
       tags: ["Python", "NumPy", "Matplotlib", "Custom Image Algorithms"],
       githubUrl: "https://github.com/SanthoshLSA",
     },
-    {
-      title: "Game Library Management System",
-      date: "Feb 2025 – Apr 2025",
-      iconName: "game",
-      description: [
-        "Built an Internet Game Management System with secure backend and MySQL integration.",
-        "Enabled wishlist functionality and keyword-based game search across multiple platforms.",
-      ],
-      tags: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "MySQL"],
-      githubUrl: "https://github.com/SanthoshLSA",
-    },
   ];
 
   const getIcon = (iconName: string) => {
@@ -95,8 +97,8 @@ export default function Projects() {
         return <MessageSquare className="h-5 w-5" />;
       case "fracture":
         return <Activity className="h-5 w-5" />;
-      case "game":
-        return <Gamepad2 className="h-5 w-5" />;
+      case "investment":
+        return <TrendingUp className="h-5 w-5" />;
       default:
         return <FolderGit2 className="h-5 w-5" />;
     }
