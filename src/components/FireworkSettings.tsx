@@ -67,26 +67,7 @@ const presets: {
 
 export default function FireworkSettings() {
   const [selected, setSelected] = React.useState<FireworkPreset>("cosmic");
-  const [visible, setVisible] = React.useState(false);
-  const [pinned, setPinned] = React.useState(false);
-  const hideTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  // Listen for edge hover
-  React.useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (pinned) return;
-      if (e.clientX < 20) {
-        if (hideTimer.current) clearTimeout(hideTimer.current);
-        setVisible(true);
-      } else if (e.clientX > 250) {
-        hideTimer.current = setTimeout(() => {
-          setVisible(false);
-        }, 600);
-      }
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [pinned]);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const handleSelect = (id: FireworkPreset) => {
     setSelected(id);
@@ -98,36 +79,16 @@ export default function FireworkSettings() {
   return (
     <div
       className={`fixed left-0 top-1/2 -translate-y-1/2 z-[60] flex items-center transition-transform duration-300 ease-out ${
-        visible || pinned ? "translate-x-0" : "-translate-x-full"
+        isOpen ? "translate-x-0" : "-translate-x-full"
       }`}
-      onMouseEnter={() => {
-        if (hideTimer.current) clearTimeout(hideTimer.current);
-        setVisible(true);
-      }}
-      onMouseLeave={() => {
-        if (!pinned) {
-          hideTimer.current = setTimeout(() => setVisible(false), 600);
-        }
-      }}
     >
       {/* Panel */}
-      <div className="frosted-glass rounded-r-xl border-r border-t border-b border-white/10 px-3 py-3 flex flex-col gap-1.5 w-44 backdrop-blur-2xl bg-black/30 shadow-2xl">
+      <div className="frosted-glass rounded-r-xl border-r border-t border-b border-white/10 px-3 py-3 flex flex-col gap-1.5 w-44 backdrop-blur-2xl bg-black/30 shadow-2xl relative">
         {/* Header */}
         <div className="flex items-center justify-between mb-1">
           <span className="text-[10px] font-bold uppercase tracking-widest text-white/40 font-display">
             Firework Mode
           </span>
-          <button
-            onClick={() => setPinned((p) => !p)}
-            className={`text-[9px] px-1.5 py-0.5 rounded border transition-colors duration-200 font-mono ${
-              pinned
-                ? "border-primary/60 text-primary bg-primary/10"
-                : "border-white/15 text-white/30 hover:border-white/30"
-            }`}
-            title={pinned ? "Unpin panel" : "Pin panel"}
-          >
-            {pinned ? "PINNED" : "PIN"}
-          </button>
         </div>
 
         {/* Preset Cards */}
@@ -172,14 +133,27 @@ export default function FireworkSettings() {
         </div>
       </div>
 
-      {/* Edge tab when hidden */}
-      <div
-        className={`absolute -right-4 top-1/2 -translate-y-1/2 w-4 h-12 flex items-center justify-center transition-opacity duration-300 ${
-          visible || pinned ? "opacity-0 pointer-events-none" : "opacity-100"
-        }`}
+      {/* Toggle Button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="absolute -right-8 top-1/2 -translate-y-1/2 w-8 h-12 flex items-center justify-center frosted-glass rounded-r-lg border-r border-t border-b border-white/10 backdrop-blur-2xl bg-black/40 text-white/50 hover:text-white transition-colors cursor-pointer"
+        aria-label="Toggle Firework Settings"
       >
-        <div className="w-[2px] h-8 rounded-full bg-primary/40" />
-      </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+        >
+          <path d="m9 18 6-6-6-6" />
+        </svg>
+      </button>
     </div>
   );
 }
