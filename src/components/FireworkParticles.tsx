@@ -186,12 +186,9 @@ export default function FireworkParticles() {
       if (p.alpha > 0) {
         nextParticles.push(p);
 
-        ctx.save();
         ctx.globalAlpha = p.alpha;
         ctx.fillStyle = p.color;
         ctx.strokeStyle = p.color;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = p.color;
 
         // Draw trail
         if (p.type === "explosion" && p.history && p.history.length > 1) {
@@ -208,7 +205,6 @@ export default function FireworkParticles() {
 
         // Draw core
         drawParticle(ctx, p);
-        ctx.restore();
       }
     }
 
@@ -254,6 +250,10 @@ export default function FireworkParticles() {
 
     const handleMouseMove = (e: MouseEvent) => {
       if (window.innerWidth < 768 || !isMouseDownRef.current) return;
+      
+      const maxAllowedParticles = 150;
+      if (particlesRef.current.length > maxAllowedParticles) return;
+
       const preset = PRESETS[presetRef.current];
 
       for (let i = 0; i < 2; i++) {
@@ -279,10 +279,11 @@ export default function FireworkParticles() {
 
       const preset = PRESETS[presetRef.current];
       const count = preset.count();
-      const maxAllowedParticles = 200;
+      const maxAllowedParticles = 150;
 
       if (particlesRef.current.length + count > maxAllowedParticles) {
         const excess = particlesRef.current.length + count - maxAllowedParticles;
+        // Slice older particles (from beginning) to keep it under limit
         particlesRef.current = particlesRef.current.slice(excess);
       }
 
