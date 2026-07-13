@@ -2,14 +2,17 @@
 
 import * as React from "react";
 import { ArrowDown } from "lucide-react";
+import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import LeetCodeIcon from "./LeetCodeIcon";
 import { GithubIcon, LinkedinIcon } from "./BrandIcons";
 
 export default function Hero() {
   const [hoveredIdx, setHoveredIdx] = React.useState<number | null>(null);
+  const { resolvedTheme } = useTheme();
 
   const getTranslation = (idx: number) => {
+    if (resolvedTheme === 'light') return "translateY(0)";
     if (hoveredIdx === null) return "translateY(0)";
     const distance = Math.abs(idx - hoveredIdx);
     if (distance === 0) return "translateY(-24px)"; // Raised full
@@ -19,6 +22,8 @@ export default function Hero() {
   };
 
   const getTextColor = (idx: number) => {
+    if (resolvedTheme === 'light') return "text-foreground";
+
     if (hoveredIdx !== null) {
       const distance = Math.abs(idx - hoveredIdx);
       if (distance === 0) return "text-purple-600 dark:text-purple-400";

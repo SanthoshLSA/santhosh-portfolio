@@ -89,7 +89,7 @@
   --glass-opacity: 0.65;
   --glass-border: 168, 85, 247;
   --glass-border-op: 0.12;
-  --glass-shadow: rgba(168, 85, 247, 0.05);
+  --glass-shadow: rgba(168, 85, 247, 0.25);
   
   --grid-line: rgba(168, 85, 247, 0.04);
 }
