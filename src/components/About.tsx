@@ -1,12 +1,15 @@
+"use client";
 import * as React from "react";
 import Image from "next/image";
 import { User, MapPin, GraduationCap, Languages, Award } from "lucide-react";
+import { useTheme } from "next-themes";
 import { CardContent } from "@/components/ui/card";
 import AnimatedHeading from "./AnimatedHeading";
 import TiltCard from "./TiltCard";
 import ScrollReveal from "./ScrollReveal";
 
 export default function About() {
+  const { resolvedTheme } = useTheme();
   const details = [
     {
       icon: <GraduationCap className="h-5.5 w-5.5 text-primary" />,
@@ -53,6 +56,7 @@ export default function About() {
         {/* Layout Grid */}
         <div className="grid gap-16 lg:grid-cols-12 items-center max-w-7xl mx-auto">
           {/* Left: Avatar Frame */}
+          {resolvedTheme !== "light" && (
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative group max-w-sm w-full aspect-square rounded-2xl overflow-hidden border border-foreground/10 p-3 bg-slate-950/40 backdrop-blur-sm shadow-xl transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]">
               <div className="relative w-full h-full rounded-xl overflow-hidden bg-slate-900">
@@ -77,8 +81,10 @@ export default function About() {
             </div>
           </div>
 
+          )}
+
           {/* Right: Content */}
-          <div className="lg:col-span-7 space-y-8">
+          <div className={`space-y-8 ${resolvedTheme === "light" ? "lg:col-span-12 text-center max-w-4xl mx-auto" : "lg:col-span-7"}`}>
             <h3 className="text-2xl sm:text-3xl font-bold text-foreground font-display tracking-wide uppercase leading-tight">
               INTELLIGENT SYSTEMS & FULL-STACK DEVELOPMENT
             </h3>

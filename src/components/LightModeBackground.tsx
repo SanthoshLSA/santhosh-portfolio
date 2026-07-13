@@ -42,8 +42,8 @@ export default function LightModeBackground() {
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 0.15,
         vy: (Math.random() - 0.5) * 0.15 - 0.2, // Drift upwards slightly
-        size: Math.random() * 2.5 + 0.5,
-        alpha: Math.random() * 0.4 + 0.1,
+        size: Math.random() * 3.5 + 1.5,
+        alpha: Math.random() * 0.6 + 0.3,
         speed: Math.random() * 0.01 + 0.005,
       });
     }
@@ -84,7 +84,7 @@ export default function LightModeBackground() {
   }, []);
 
   React.useEffect(() => {
-    if (!isLight || window.innerWidth < 768) return;
+    if (window.innerWidth < 768) return;
 
     initParticles();
     requestRef.current = requestAnimationFrame(updateAndDraw);
@@ -99,14 +99,12 @@ export default function LightModeBackground() {
       window.removeEventListener("resize", handleResize);
       if (requestRef.current) cancelAnimationFrame(requestRef.current);
     };
-  }, [isLight, initParticles, updateAndDraw]);
-
-  if (!isLight) return null;
+  }, [initParticles, updateAndDraw]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-0 hidden md:block opacity-60 mix-blend-multiply"
+      className={`pointer-events-none absolute inset-0 z-0 hidden md:block mix-blend-multiply transition-opacity duration-1000 ${isLight ? 'opacity-100' : 'opacity-0'}`}
     />
   );
 }

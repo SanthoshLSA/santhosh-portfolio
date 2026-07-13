@@ -260,8 +260,6 @@ export default function CosmicBackground() {
     };
   }, [resizeCanvas, initStars]);
 
-  if (isLight) return null;
-
   if (typeof window !== "undefined" && window.innerWidth < 768) {
     return null;
   }
@@ -271,7 +269,7 @@ export default function CosmicBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-0 hidden md:block opacity-60"
+      className={`pointer-events-none absolute inset-0 z-0 hidden md:block transition-opacity duration-1000 ${isLight ? 'opacity-0' : 'opacity-60'}`}
     />
   );
 }

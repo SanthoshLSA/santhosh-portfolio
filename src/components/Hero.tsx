@@ -31,21 +31,21 @@ export default function Hero() {
       if (distance === 2) return "text-primary opacity-60";
     }
     const colors = [
-      "text-purple-600 dark:text-purple-400", // S
-      "text-purple-600/90 dark:text-purple-400/90", // A
-      "text-purple-600/80 dark:text-purple-400/80", // N
-      "text-purple-600/70 dark:text-purple-400/70", // T
-      "text-purple-600/60 dark:text-purple-400/60", // H
-      "text-foreground", // O
-      "text-foreground", // S
-      "text-foreground", // H
-      "text-foreground", // [space]
-      "text-foreground", // A
-      "text-purple-600/60 dark:text-purple-400/60", // N
-      "text-purple-600/70 dark:text-purple-400/70", // A
-      "text-purple-600/80 dark:text-purple-400/80", // N
-      "text-purple-600/90 dark:text-purple-400/90", // T
-      "text-purple-600 dark:text-purple-400"  // H
+      "text-primary", // S
+      "text-primary/90", // A
+      "text-primary/80", // N
+      "text-primary/70", // T
+      "text-primary/60", // H
+      "text-primary/50", // O
+      "text-primary/60", // S
+      "text-primary/70", // H
+      "text-primary/80", // [space]
+      "text-primary/90", // A
+      "text-primary", // N
+      "text-primary/90", // A
+      "text-primary/80", // N
+      "text-primary/70", // T
+      "text-primary"  // H
     ];
     return colors[idx] || "text-foreground";
   };
