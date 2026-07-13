@@ -11,6 +11,7 @@ interface Particle {
   size: number;
   alpha: number;
   speed: number;
+  isHollow: boolean;
 }
 
 export default function LightModeBackground() {
@@ -42,9 +43,10 @@ export default function LightModeBackground() {
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 0.15,
         vy: (Math.random() - 0.5) * 0.15 - 0.2, // Drift upwards slightly
-        size: Math.random() * 3.5 + 1.5,
+        size: Math.random() * 4.5 + 1.5,
         alpha: Math.random() * 0.6 + 0.3,
         speed: Math.random() * 0.01 + 0.005,
+        isHollow: Math.random() > 0.5,
       });
     }
     particlesRef.current = particles;
@@ -76,8 +78,14 @@ export default function LightModeBackground() {
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(168, 85, 247, ${p.alpha})`; // Light purple dust
-      ctx.fill();
+      if (p.isHollow) {
+        ctx.strokeStyle = `rgba(168, 85, 247, ${p.alpha})`;
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+      } else {
+        ctx.fillStyle = `rgba(168, 85, 247, ${p.alpha})`;
+        ctx.fill();
+      }
     }
 
     requestRef.current = requestAnimationFrame(updateAndDraw);
