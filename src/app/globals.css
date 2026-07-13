@@ -59,7 +59,7 @@
 
 :root {
   /* Soft Lavender Aesthetic Light Mode Colors */
-  --background: oklch(0.97 0.015 290); /* Very soft tinted lavender */
+  --background: oklch(0.92 0.02 290); /* Darker soft tinted lavender */
   --foreground: oklch(0.35 0.04 285); /* Deep slate-eggplant */
   
   --card: rgba(250, 245, 255, 0.65);
