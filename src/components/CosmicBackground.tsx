@@ -260,6 +260,8 @@ export default function CosmicBackground() {
     };
   }, [resizeCanvas, initStars]);
 
+  if (isLight) return null;
+
   if (typeof window !== "undefined" && window.innerWidth < 768) {
     return null;
   }

@@ -62,10 +62,10 @@
   --background: oklch(0.98 0.01 285);
   --foreground: oklch(0.15 0.02 285);
   
-  --card: rgba(255, 255, 255, 0.7);
+  --card: rgba(245, 240, 255, 0.8);
   --card-foreground: oklch(0.15 0.02 285);
   
-  --popover: rgba(255, 255, 255, 0.85);
+  --popover: rgba(245, 240, 255, 0.9);
   --popover-foreground: oklch(0.15 0.02 285);
   
   --primary: oklch(0.60 0.22 295); /* Electric Purple */

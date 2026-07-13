@@ -26,21 +26,9 @@ export default function Hero() {
       if (distance === 2) return "text-primary opacity-60";
     }
     const colors = [
-      "opacity-100 text-primary", // S
-      "opacity-90 text-primary",  // A
-      "opacity-80 text-primary",  // N
-      "opacity-70 text-primary",  // T
-      "opacity-60 text-primary",  // H
-      "opacity-100 text-foreground", // O
-      "opacity-100 text-foreground", // S
-      "opacity-100 text-foreground", // H
-      "opacity-100 text-foreground", // [space]
-      "opacity-100 text-foreground", // A
-      "opacity-60 text-primary",  // N
-      "opacity-70 text-primary",  // A
-      "opacity-80 text-primary",  // N
-      "opacity-90 text-primary",  // T
-      "opacity-100 text-primary", // H
+      "text-primary", "text-primary/90", "text-primary/80", "text-primary/70", "text-primary/60",
+      "text-primary/50", "text-primary/60", "text-primary/70", "text-primary/80", "text-primary/90",
+      "text-primary", "text-primary/90", "text-primary/80", "text-primary/70", "text-primary"
     ];
     return colors[idx] || "text-foreground";
   };

@@ -322,6 +322,8 @@ export default function FireworkParticles() {
   }, [resizeCanvas]);
 
   // OPTIMIZATION: Removed mixBlendMode to massively boost frame rates during intense click-spam
+  if (resolvedTheme === "light") return null;
+  
   return (
     <canvas
       ref={canvasRef}

@@ -22,7 +22,7 @@ export default function Navbar() {
         {/* Logo */}
         <a href="#" className="flex items-center space-x-2 text-foreground font-display font-bold tracking-wider hover:text-accent transition-colors">
           <Terminal className="h-5 w-5 text-accent animate-pulse" />
-          <span className="bg-gradient-to-r from-accent via-white to-primary bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-accent via-primary/50 to-primary bg-clip-text text-transparent">
             SANTHOSH.DEV
           </span>
         </a>
