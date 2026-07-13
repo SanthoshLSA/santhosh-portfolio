@@ -26,9 +26,9 @@ export default function Hero() {
 
     if (hoveredIdx !== null) {
       const distance = Math.abs(idx - hoveredIdx);
-      if (distance === 0) return "text-purple-600 dark:text-purple-400";
-      if (distance === 1) return "text-purple-500 dark:text-purple-300";
-      if (distance === 2) return "text-purple-400 dark:text-purple-200";
+      if (distance === 0) return "text-primary opacity-100";
+      if (distance === 1) return "text-primary opacity-80";
+      if (distance === 2) return "text-primary opacity-60";
     }
     const colors = [
       "text-purple-600 dark:text-purple-400", // S

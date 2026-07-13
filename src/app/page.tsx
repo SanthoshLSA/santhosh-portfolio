@@ -14,6 +14,7 @@ import CursorGlow from "@/components/CursorGlow";
 import FloatingNav from "@/components/FloatingNav";
 import FireworkParticles from "@/components/FireworkParticles";
 import CosmicBackground from "@/components/CosmicBackground";
+import LightModeBackground from "@/components/LightModeBackground";
 import MagneticCursor from "@/components/MagneticCursor";
 import FireworkSettings from "@/components/FireworkSettings";
 
@@ -22,6 +23,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-background text-foreground relative overflow-hidden">
       <CursorGlow />
       <CosmicBackground />
+      <LightModeBackground />
       <MagneticCursor />
       <FireworkSettings />
       <FloatingNav />

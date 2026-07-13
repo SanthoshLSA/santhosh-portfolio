@@ -1,9 +1,14 @@
+"use client";
+
 import * as React from "react";
 import { Mail, Phone, Code2 } from "lucide-react";
 import LeetCodeIcon from "./LeetCodeIcon";
+
+import { useTheme } from "next-themes";
 import { GithubIcon, LinkedinIcon } from "./BrandIcons";
 
 export default function Footer() {
+  const { resolvedTheme } = useTheme();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -13,7 +18,7 @@ export default function Footer() {
           {/* Logo / Branding */}
           <div className="flex items-center space-x-2.5 text-foreground font-bold tracking-wider">
             <Code2 className="h-6 w-6 text-primary" />
-            <span className="text-base bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent uppercase font-extrabold">
+            <span className={`text-base uppercase font-extrabold ${resolvedTheme === "light" ? "text-foreground" : "bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent"}`}>
               SANTHOSH ANANTH
             </span>
           </div>
