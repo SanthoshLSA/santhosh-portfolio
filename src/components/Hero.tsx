@@ -51,7 +51,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative flex min-h-[calc(100vh-3.5rem)] items-center justify-center overflow-hidden py-24 grid-bg">
+    <section className="relative flex min-h-[calc(100vh-3.5rem)] items-center justify-center overflow-hidden py-24">
       {/* Ambient Cosmic Glow Spheres */}
       <div className="absolute top-1/4 left-1/4 h-[400px] w-[400px] rounded-full bg-primary/10 glow-blur -z-10 animate-pulse-slow" />
       <div className="absolute bottom-1/4 right-1/4 h-[450px] w-[450px] rounded-full bg-primary/8 glow-blur -z-10 animate-pulse-slow duration-[10s]" />

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useTheme } from "next-themes";
 
 interface Props {
   text: string;
@@ -9,8 +10,10 @@ interface Props {
 
 export default function AnimatedHeading({ text, className = "" }: Props) {
   const [hoveredIdx, setHoveredIdx] = React.useState<number | null>(null);
+  const { resolvedTheme } = useTheme();
 
   const getTranslation = (idx: number) => {
+    if (resolvedTheme === "light") return "translateY(0)";
     if (hoveredIdx === null) return "translateY(0)";
     const distance = Math.abs(idx - hoveredIdx);
     if (distance === 0) return "translateY(-14px)"; // Raised full
@@ -20,6 +23,7 @@ export default function AnimatedHeading({ text, className = "" }: Props) {
   };
 
   const getTextColor = (idx: number) => {
+    if (resolvedTheme === "light") return "text-foreground";
     if (hoveredIdx === null) return "text-foreground";
     const distance = Math.abs(idx - hoveredIdx);
     if (distance === 0) return "text-primary";

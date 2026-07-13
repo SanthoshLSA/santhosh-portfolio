@@ -134,16 +134,7 @@ export default function CosmicBackground() {
       star.y += (targetY - star.y) * 0.08;
 
       // Draw star trail if scrolling
-      if (Math.abs(v) > 0.4) {
-        const maxTrailLen = 18;
-        const trailLength = Math.max(Math.min(v * 0.8, maxTrailLen), -maxTrailLen);
-        ctx.beginPath();
-        ctx.moveTo(star.x, star.y);
-        ctx.lineTo(star.x, star.y + trailLength);
-        ctx.strokeStyle = `rgba(168, 85, 247, ${Math.min(Math.abs(v) * 0.035, baseAlpha + 0.2)})`;
-        ctx.lineWidth = star.size * 0.95;
-        ctx.stroke();
-      }
+      /* Trail effect removed as per request */
 
       // Draw standard star core
       ctx.beginPath();

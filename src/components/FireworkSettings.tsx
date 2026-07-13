@@ -78,11 +78,11 @@ export default function FireworkSettings() {
 
   const active = presets.find((p) => p.id === selected)!;
 
-  if (resolvedTheme === "light") return null;
+  
 
   return (
     <div
-      className={`fixed left-0 top-1/2 -translate-y-1/2 z-[60] flex items-center transition-transform duration-300 ease-out ${
+      className={`fixed left-0 ${resolvedTheme === "light" ? "hidden" : ""} top-1/2 -translate-y-1/2 z-[60] flex items-center transition-transform duration-300 ease-out ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >

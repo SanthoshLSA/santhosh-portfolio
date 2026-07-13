@@ -33,10 +33,10 @@ export default function LightModeBackground() {
       window.innerHeight
     );
 
-    const count = Math.floor((window.innerWidth * canvas.height) / 30000);
+    const count = Math.floor((window.innerWidth * canvas.height) / 8000);
     const particles: Particle[] = [];
     
-    for (let i = 0; i < Math.min(count, 100); i++) {
+    for (let i = 0; i < Math.min(count, 400); i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,

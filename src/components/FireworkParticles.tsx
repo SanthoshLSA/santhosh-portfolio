@@ -322,12 +322,12 @@ export default function FireworkParticles() {
   }, [resizeCanvas]);
 
   // OPTIMIZATION: Removed mixBlendMode to massively boost frame rates during intense click-spam
-  if (resolvedTheme === "light") return null;
+  
   
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-50 hidden md:block"
+      className={`pointer-events-none absolute inset-0 z-50 hidden md:block ${resolvedTheme === "light" ? "opacity-0" : "opacity-100"}`}
     />
   );
 }

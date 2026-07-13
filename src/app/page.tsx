@@ -20,7 +20,7 @@ import FireworkSettings from "@/components/FireworkSettings";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground relative overflow-hidden">
+    <div className="min-h-screen flex flex-col bg-background text-foreground relative overflow-hidden grid-bg">
       <CursorGlow />
       <CosmicBackground />
       <LightModeBackground />
