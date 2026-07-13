@@ -203,7 +203,7 @@ export default function MagneticCursor() {
       {/* Trailing ring */}
       <div
         ref={ringRef}
-        className={`fixed top-0 left-0 rounded-full pointer-events-none z-[70] transition-all duration-300 ease-out mix-blend-screen ${
+        className={`fixed top-0 left-0 rounded-full pointer-events-none z-[70] transition-all duration-300 ease-out ${
           isVisible ? "opacity-100" : "opacity-0"
         } ${
           isHovered

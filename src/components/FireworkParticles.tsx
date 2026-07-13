@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useTheme } from "next-themes";
 import type { FireworkPreset } from "./FireworkSettings";
 
 interface Particle {
@@ -100,6 +101,7 @@ export default function FireworkParticles() {
   const isMouseDownRef = React.useRef(false);
   const updateRef = React.useRef<() => void>(() => {});
   const presetRef = React.useRef<FireworkPreset>("cosmic");
+  const { resolvedTheme } = useTheme();
 
   const resizeCanvas = React.useCallback(() => {
     const canvas = canvasRef.current;
@@ -319,11 +321,11 @@ export default function FireworkParticles() {
     };
   }, [resizeCanvas]);
 
+  // OPTIMIZATION: Removed mixBlendMode to massively boost frame rates during intense click-spam
   return (
     <canvas
       ref={canvasRef}
       className="pointer-events-none absolute inset-0 z-50 hidden md:block"
-      style={{ mixBlendMode: "screen" }}
     />
   );
 }

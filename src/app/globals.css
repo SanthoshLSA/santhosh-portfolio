@@ -58,6 +58,41 @@
 }
 
 :root {
+  /* Crisp Light Mode Colors */
+  --background: oklch(0.98 0.01 285);
+  --foreground: oklch(0.15 0.02 285);
+  
+  --card: rgba(255, 255, 255, 0.7);
+  --card-foreground: oklch(0.15 0.02 285);
+  
+  --popover: rgba(255, 255, 255, 0.85);
+  --popover-foreground: oklch(0.15 0.02 285);
+  
+  --primary: oklch(0.60 0.22 295); /* Electric Purple */
+  --primary-foreground: oklch(0.99 0.005 0);
+  
+  --accent: oklch(0.60 0.22 295);
+  --accent-foreground: oklch(0.99 0.005 0);
+  
+  --secondary: rgba(0, 0, 0, 0.05);
+  --secondary-foreground: oklch(0.35 0.05 295);
+  
+  --muted: oklch(0.95 0.01 285);
+  --muted-foreground: oklch(0.45 0.02 285);
+  
+  --border: rgba(0, 0, 0, 0.08);
+  --input: rgba(0, 0, 0, 0.06);
+  --ring: oklch(0.60 0.22 295 / 60%);
+  --radius: 1.25rem;
+  
+  --glass-bg: 255, 255, 255;
+  --glass-opacity: 0.7;
+  --glass-border: 0, 0, 0;
+  --glass-border-op: 0.08;
+  --glass-shadow: rgba(0, 0, 0, 0.05);
+}
+
+.dark {
   /* Rich Dark Slate-Purple Aesthetic Colors */
   --background: oklch(0.09 0.015 285); /* Deep slate-purple */
   --foreground: oklch(0.97 0.008 255);
@@ -84,6 +119,12 @@
   --input: rgba(255, 255, 255, 0.06);
   --ring: oklch(0.60 0.22 295 / 60%);
   --radius: 1.25rem;
+  
+  --glass-bg: 255, 255, 255;
+  --glass-opacity: 0.03;
+  --glass-border: 255, 255, 255;
+  --glass-border-op: 0.08;
+  --glass-shadow: rgba(0, 0, 0, 0.3);
 }
 
 @layer base {
@@ -136,9 +177,9 @@
 
 /* Frosted Glassmorphism Panel Class */
 .frosted-glass {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 1px 1px 0 rgba(255, 255, 255, 0.05);
+  background: rgba(var(--glass-bg), var(--glass-opacity));
+  border: 1px solid rgba(var(--glass-border), var(--glass-border-op));
+  box-shadow: 0 8px 32px 0 var(--glass-shadow), inset 0 1px 1px 0 rgba(var(--glass-border), var(--glass-border-op));
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -150,9 +191,9 @@
 }
 
 .frosted-glass-hover:hover {
-  background: rgba(255, 255, 255, 0.06) !important;
+  background: rgba(var(--glass-bg), calc(var(--glass-opacity) * 2)) !important;
   border-color: rgba(168, 85, 247, 0.4) !important;
-  box-shadow: 0 12px 40px 0 rgba(168, 85, 247, 0.12), inset 0 1px 1px 0 rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 12px 40px 0 rgba(168, 85, 247, 0.12), inset 0 1px 1px 0 rgba(var(--glass-border), var(--glass-border-op)) !important;
 }
 
 /* Exact SVG outline flare drop shadow keyframe animation */

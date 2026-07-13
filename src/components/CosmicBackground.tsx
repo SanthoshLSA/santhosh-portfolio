@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useTheme } from "next-themes";
 
 interface Star {
   x: number;
@@ -31,6 +32,9 @@ export default function CosmicBackground() {
   const scrollVelocityRef = React.useRef(0);
   const requestRef = React.useRef<number | null>(null);
   const updateRef = React.useRef<() => void>(() => {});
+  const { resolvedTheme } = useTheme();
+
+  const isLight = resolvedTheme === "light";
 
   const resizeCanvas = React.useCallback(() => {
     const canvas = canvasRef.current;
@@ -54,10 +58,10 @@ export default function CosmicBackground() {
           window.innerHeight
         );
 
-    // Star Count
-    const starCount = Math.floor((window.innerWidth * docHeight) / 18000);
+    // OPTIMIZATION: Reduced max stars from 450 to 180 for low-power GPUs
+    const starCount = Math.floor((window.innerWidth * docHeight) / 25000);
     const stars: Star[] = [];
-    for (let i = 0; i < Math.min(starCount, 450); i++) {
+    for (let i = 0; i < Math.min(starCount, 180); i++) {
       const rx = Math.random() * window.innerWidth;
       const ry = Math.random() * docHeight;
       stars.push({
@@ -85,14 +89,19 @@ export default function CosmicBackground() {
     const shootingStars = shootingStarsRef.current;
     const mouse = mouseRef.current;
 
-    // Track scroll speed and direction
     const currentScrollY = window.scrollY;
     const scrollDelta = currentScrollY - lastScrollYRef.current;
     lastScrollYRef.current = currentScrollY;
 
-    // Smoothly decay scroll velocity toward 0
     scrollVelocityRef.current = scrollVelocityRef.current * 0.85 + scrollDelta * 0.15;
     const v = scrollVelocityRef.current;
+
+    // Theme dependent alphas
+    const baseAlpha = isLight ? 0.35 : 0.15;
+    const connAlpha = isLight ? 0.12 : 0.06;
+
+    // OPTIMIZATION: Set global styles once instead of save/restore in loops
+    ctx.lineCap = "round";
 
     // --- Render constellations stars ---
     for (let i = 0; i < stars.length; i++) {
@@ -131,7 +140,7 @@ export default function CosmicBackground() {
         ctx.beginPath();
         ctx.moveTo(star.x, star.y);
         ctx.lineTo(star.x, star.y + trailLength);
-        ctx.strokeStyle = `rgba(168, 85, 247, ${Math.min(Math.abs(v) * 0.035, 0.45)})`;
+        ctx.strokeStyle = `rgba(168, 85, 247, ${Math.min(Math.abs(v) * 0.035, baseAlpha + 0.2)})`;
         ctx.lineWidth = star.size * 0.95;
         ctx.stroke();
       }
@@ -139,12 +148,12 @@ export default function CosmicBackground() {
       // Draw standard star core
       ctx.beginPath();
       ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(168, 85, 247, ${0.12 + star.size * 0.18})`;
+      ctx.fillStyle = `rgba(168, 85, 247, ${baseAlpha + star.size * 0.15})`;
       ctx.fill();
     }
 
     // Connect stars close to each other
-    ctx.strokeStyle = "rgba(168, 85, 247, 0.06)";
+    ctx.strokeStyle = `rgba(168, 85, 247, ${connAlpha})`;
     ctx.lineWidth = 0.8;
     for (let i = 0; i < stars.length; i++) {
       for (let j = i + 1; j < stars.length; j++) {
@@ -163,7 +172,7 @@ export default function CosmicBackground() {
     }
 
     // --- Spawn Shooting Stars ---
-    if (Math.random() < 0.018 && shootingStars.length < 5) {
+    if (Math.random() < 0.018 && shootingStars.length < 3) {
       const startX = Math.random() * canvas.width;
       const startY = Math.random() * (canvas.height * 0.85);
       const speed = 10 + Math.random() * 8;
@@ -190,30 +199,23 @@ export default function CosmicBackground() {
       if (s.alpha > 0 && s.x < canvas.width && s.y < canvas.height) {
         nextShootingStars.push(s);
 
-        ctx.save();
         const trailX = s.x - s.vx * (s.len / s.speed);
         const trailY = s.y - s.vy * (s.len / s.speed);
 
-        const gradient = ctx.createLinearGradient(s.x, s.y, trailX, trailY);
-        gradient.addColorStop(0, `rgba(255, 255, 255, ${s.alpha})`);
-        gradient.addColorStop(0.2, `rgba(192, 132, 252, ${s.alpha * 0.8})`);
-        gradient.addColorStop(1, "rgba(168, 85, 247, 0)");
-
+        // OPTIMIZATION: Replace expensive linearGradient and shadowBlur with simple path stroking
         ctx.beginPath();
         ctx.moveTo(s.x, s.y);
         ctx.lineTo(trailX, trailY);
-        ctx.strokeStyle = gradient;
-        ctx.lineWidth = 1.8;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = "#c084fc";
+        // Use a simpler solid color with dynamic alpha instead of a heavy gradient calculation per frame
+        ctx.strokeStyle = `rgba(168, 85, 247, ${s.alpha * (isLight ? 0.8 : 0.6)})`;
+        ctx.lineWidth = 2.0;
         ctx.stroke();
-        ctx.restore();
       }
     }
     shootingStarsRef.current = nextShootingStars;
 
     requestRef.current = requestAnimationFrame(updateRef.current);
-  }, []);
+  }, [isLight]);
 
   React.useEffect(() => {
     updateRef.current = updateAndDraw;
@@ -225,7 +227,6 @@ export default function CosmicBackground() {
     resizeCanvas();
     initStars();
 
-    // Initialize scroll coords on mount
     lastScrollYRef.current = window.scrollY;
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -263,11 +264,12 @@ export default function CosmicBackground() {
     return null;
   }
 
+  // OPTIMIZATION: Removed mixBlendMode: "screen" which causes severe GPU composition lag.
+  // The dark purple canvas alpha math was adjusted to natively simulate the overlap without needing the blend mode.
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-0 hidden md:block"
-      style={{ mixBlendMode: "screen" }}
+      className="pointer-events-none absolute inset-0 z-0 hidden md:block opacity-60"
     />
   );
 }
