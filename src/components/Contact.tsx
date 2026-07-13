@@ -84,7 +84,7 @@ export default function Contact() {
         <div className="grid gap-12 lg:grid-cols-12 max-w-7xl mx-auto">
           {/* Left Column: Direct Info */}
           <div className="lg:col-span-5 space-y-8">
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white font-display tracking-wide uppercase">Contact Information</h3>
+            <h3 className="text-2xl font-bold text-foreground font-display tracking-wide uppercase">Contact Information</h3>
             <p className="text-muted-foreground text-base leading-relaxed font-sans">
               Feel free to reach out to me via email or phone. I usually respond within a few hours.
             </p>
@@ -100,7 +100,7 @@ export default function Contact() {
                       <p className="text-[11px] sm:text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">Email</p>
                       <a
                         href="mailto:santhosh.ananth6@gmail.com"
-                        className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white hover:text-primary transition-colors break-all font-display"
+                        className="text-base sm:text-lg font-semibold text-foreground hover:text-primary transition-colors break-all font-display"
                       >
                         santhosh.ananth6@gmail.com
                       </a>
@@ -119,7 +119,7 @@ export default function Contact() {
                       <p className="text-[11px] sm:text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">Phone</p>
                       <a
                         href="tel:+918903266557"
-                        className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white hover:text-primary transition-colors font-display"
+                        className="text-base sm:text-lg font-semibold text-foreground hover:text-primary transition-colors font-display"
                       >
                         +91 890326 6557
                       </a>
@@ -136,7 +136,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="text-[11px] sm:text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">Location</p>
-                      <span className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white font-display uppercase tracking-wider">
+                      <span className="text-base sm:text-lg font-semibold text-foreground font-display uppercase tracking-wider">
                         Chennai, Tamil Nadu, India
                       </span>
                     </div>
@@ -163,7 +163,7 @@ export default function Contact() {
                         value={formState.name}
                         onChange={handleChange}
                         placeholder="John Doe"
-                        className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-white/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans"
+                        className="w-full rounded-xl border border-foreground/10 bg-foreground/[0.02] px-4.5 py-3.5 text-base text-foreground placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-foreground/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans"
                       />
                     </div>
                     <div className="space-y-2">
@@ -177,7 +177,7 @@ export default function Contact() {
                         value={formState.email}
                         onChange={handleChange}
                         placeholder="john@example.com"
-                        className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-white/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans"
+                        className="w-full rounded-xl border border-foreground/10 bg-foreground/[0.02] px-4.5 py-3.5 text-base text-foreground placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-foreground/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans"
                       />
                     </div>
                   </div>
@@ -192,7 +192,7 @@ export default function Contact() {
                       value={formState.subject}
                       onChange={handleChange}
                       placeholder="Project Inquiry / Internship Role"
-                      className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-white/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans"
+                      className="w-full rounded-xl border border-foreground/10 bg-foreground/[0.02] px-4.5 py-3.5 text-base text-foreground placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-foreground/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans"
                     />
                   </div>
                   <div className="space-y-2">
@@ -206,7 +206,7 @@ export default function Contact() {
                       value={formState.message}
                       onChange={handleChange}
                       placeholder="Describe your request..."
-                      className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4.5 py-3.5 text-base text-white placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-white/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans resize-none"
+                      className="w-full rounded-xl border border-foreground/10 bg-foreground/[0.02] px-4.5 py-3.5 text-base text-foreground placeholder-muted-foreground/40 focus:border-primary/50 focus:bg-foreground/[0.04] focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all font-sans resize-none"
                     />
                   </div>
 

@@ -20,12 +20,12 @@ export default function AnimatedHeading({ text, className = "" }: Props) {
   };
 
   const getTextColor = (idx: number) => {
-    if (hoveredIdx === null) return "text-white";
+    if (hoveredIdx === null) return "text-foreground";
     const distance = Math.abs(idx - hoveredIdx);
     if (distance === 0) return "text-primary";
     if (distance === 1) return "text-purple-300";
     if (distance === 2) return "text-purple-100/90";
-    return "text-white";
+    return "text-foreground";
   };
 
   // Pre-calculate indices in a functionally pure way to satisfy immutability rules
@@ -39,7 +39,7 @@ export default function AnimatedHeading({ text, className = "" }: Props) {
 
   return (
     <h2
-      className={`text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white font-display uppercase cursor-default select-none pb-2 ${className}`}
+      className={`text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-foreground font-display uppercase cursor-default select-none pb-2 ${className}`}
       onMouseLeave={() => setHoveredIdx(null)}
     >
       {wordBlocks.map(({ word, startIdx }, wIdx) => {
@@ -64,7 +64,7 @@ export default function AnimatedHeading({ text, className = "" }: Props) {
             {wIdx < wordBlocks.length - 1 && (
               <span
                 onMouseEnter={() => setHoveredIdx(startIdx + word.length)}
-                className="inline-block text-white"
+                className="inline-block text-foreground"
                 style={{
                   transform: getTranslation(startIdx + word.length),
                   minWidth: "0.28em",

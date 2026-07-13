@@ -17,7 +17,7 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-background/50 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-foreground/5 bg-background/50 backdrop-blur-md">
       <div className="container mx-auto max-w-7xl flex h-14 items-center justify-between px-6 sm:px-10 lg:px-16">
         {/* Logo */}
         <a href="#" className="flex items-center space-x-2 text-foreground font-display font-bold tracking-wider hover:text-accent transition-colors">
@@ -54,7 +54,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="lg:hidden border-b border-white/5 bg-background/95 px-4 pt-2 pb-4 space-y-1 transition-all duration-300 font-display">
+        <div className="lg:hidden border-b border-foreground/5 bg-background/95 px-4 pt-2 pb-4 space-y-1 transition-all duration-300 font-display">
           {navItems.map((item) => (
             <a
               key={item.name}

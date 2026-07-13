@@ -55,10 +55,10 @@ export default function Achievements() {
                 <div>
                   <div className="flex items-center gap-3 mb-6">
                     <Terminal className="h-6 w-6 text-primary" />
-                    <h3 className="text-lg font-bold text-slate-900 dark:text-white font-display tracking-wide uppercase">Competitive Coding</h3>
+                    <h3 className="text-lg font-bold text-foreground font-display tracking-wide uppercase">Competitive Coding</h3>
                   </div>
 
-                  <div className="bg-secondary/20 border border-white/5 rounded-xl p-5 text-center mb-8">
+                  <div className="bg-secondary/20 border border-foreground/5 rounded-xl p-5 text-center mb-8">
                     <p className="text-4xl font-extrabold text-primary font-display tracking-tight">500+</p>
                     <p className="text-xs uppercase font-display tracking-wider text-muted-foreground font-semibold mt-2">Problems Solved Across LeetCode, HackerRank, & Codeforces</p>
                   </div>
@@ -71,7 +71,7 @@ export default function Achievements() {
                 </div>
 
                 <div className="mt-10">
-                  <Button variant="outline" size="sm" className="w-full border-white/10 hover:border-primary/50 hover:bg-primary/5 text-[11px] sm:text-xs uppercase font-display tracking-wider font-semibold py-5" asChild>
+                  <Button variant="outline" size="sm" className="w-full border-foreground/10 hover:border-primary/50 hover:bg-primary/5 text-[11px] sm:text-xs uppercase font-display tracking-wider font-semibold py-5" asChild>
                     <a href="https://leetcode.com/SanthoshLegendSA/" target="_blank" rel="noopener noreferrer">
                       View LeetCode Profile
                     </a>
@@ -88,15 +88,15 @@ export default function Achievements() {
                 <div>
                   <div className="flex items-center gap-3 mb-8">
                     <Zap className="h-6 w-6 text-primary" />
-                    <h3 className="text-lg font-bold text-slate-900 dark:text-white font-display tracking-wide uppercase">Contests & Hackathons</h3>
+                    <h3 className="text-lg font-bold text-foreground font-display tracking-wide uppercase">Contests & Hackathons</h3>
                   </div>
 
                   <div className="space-y-5">
                     {accomplishments.map((item, idx) => (
-                      <div key={idx} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-5 rounded-xl bg-secondary/30 border border-white/5 hover:border-primary/20 transition-all duration-200 gap-5">
+                      <div key={idx} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-5 rounded-xl bg-secondary/30 border border-foreground/5 hover:border-primary/20 transition-all duration-200 gap-5">
                         <div className="space-y-2">
                           <div className="flex items-center gap-2.5 flex-wrap">
-                            <h4 className="text-base font-bold text-slate-900 dark:text-white leading-tight font-display tracking-wide uppercase">{item.title}</h4>
+                            <h4 className="text-base font-bold text-foreground leading-tight font-display tracking-wide uppercase">{item.title}</h4>
                             <span className="text-[9px] font-semibold text-primary bg-primary/5 border border-primary/25 px-2.5 py-0.5 rounded-full uppercase font-display tracking-wider">
                               {item.badge}
                             </span>
@@ -106,7 +106,7 @@ export default function Achievements() {
                         </div>
                         
                         {item.verifyUrl && (
-                          <Button variant="outline" size="sm" className="border-white/10 hover:border-primary/50 hover:bg-primary/5 text-[11px] sm:text-xs uppercase font-display tracking-wider font-semibold shrink-0 py-5" asChild>
+                          <Button variant="outline" size="sm" className="border-foreground/10 hover:border-primary/50 hover:bg-primary/5 text-[11px] sm:text-xs uppercase font-display tracking-wider font-semibold shrink-0 py-5" asChild>
                             <a href={item.verifyUrl} target="_blank" rel="noopener noreferrer">
                               View Certificate
                             </a>

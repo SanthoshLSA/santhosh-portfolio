@@ -67,7 +67,7 @@ export default function Skills() {
             ].map((skill, idx) => (
               <span
                 key={idx}
-                className="text-sm sm:text-base font-bold tracking-widest font-display text-muted-foreground/75 hover:text-primary transition-colors flex items-center gap-3 bg-white/[0.01] border border-white/5 px-5 py-3 rounded-xl shadow-sm cursor-default"
+                className="text-sm sm:text-base font-bold tracking-widest font-display text-muted-foreground/75 hover:text-primary transition-colors flex items-center gap-3 bg-foreground/[0.01] border border-foreground/5 px-5 py-3 rounded-xl shadow-sm cursor-default"
               >
                 <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
                 {skill}
@@ -87,7 +87,7 @@ export default function Skills() {
                   <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 group-hover:scale-110 transition-transform duration-300 mb-3">
                     {category.icon}
                   </div>
-                  <CardTitle className="text-lg font-bold text-slate-900 dark:text-white leading-tight font-display tracking-wide uppercase">
+                  <CardTitle className="text-lg font-bold text-foreground leading-tight font-display tracking-wide uppercase">
                     {category.title}
                   </CardTitle>
                   <p className="text-xs sm:text-sm text-muted-foreground font-sans mt-2">
@@ -100,7 +100,7 @@ export default function Skills() {
                       <Badge
                         key={sIdx}
                         variant="secondary"
-                        className="bg-secondary/30 hover:bg-primary/25 hover:text-primary border border-white/5 hover:border-primary/35 transition-all duration-200 text-xs uppercase font-display tracking-widest py-1.5 px-3 font-semibold text-muted-foreground"
+                        className="bg-secondary/30 hover:bg-primary/25 hover:text-primary border border-foreground/5 hover:border-primary/35 transition-all duration-200 text-xs uppercase font-display tracking-widest py-1.5 px-3 font-semibold text-muted-foreground"
                       >
                         {skill}
                       </Badge>

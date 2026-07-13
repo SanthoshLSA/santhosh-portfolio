@@ -48,9 +48,9 @@ export default function WorkExperience() {
               >
                 <CardContent className="p-8 sm:p-10">
                   {/* Header Row */}
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 border-b border-white/5 pb-6 mb-6">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 border-b border-foreground/5 pb-6 mb-6">
                     <div>
-                      <h3 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors font-display tracking-wide uppercase leading-snug">
+                      <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors font-display tracking-wide uppercase leading-snug">
                         {exp.role}
                       </h3>
                       <div className="flex items-center gap-2.5 mt-2.5 text-muted-foreground text-sm">

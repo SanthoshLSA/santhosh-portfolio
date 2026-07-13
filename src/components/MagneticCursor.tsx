@@ -184,7 +184,7 @@ export default function MagneticCursor() {
               className={`absolute top-1/2 left-1/2 w-[6px] h-[6px] ${cfg.dotColor} border border-yellow-200/50`}
               style={{ transform: "translate(-50%,-50%) rotate(45deg)" }}
             />
-            <div className={`absolute top-1/2 left-1/2 w-[2px] h-[2px] bg-white rounded-full -translate-x-1/2 -translate-y-1/2 ${isHovered ? cfg.glowHover : cfg.glow}`} />
+            <div className={`absolute top-1/2 left-1/2 w-[2px] h-[2px] bg-foreground rounded-full -translate-x-1/2 -translate-y-1/2 ${isHovered ? cfg.glowHover : cfg.glow}`} />
           </>
         )}
 
@@ -195,7 +195,7 @@ export default function MagneticCursor() {
               className={`absolute top-1/2 left-1/2 w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-b-[7px] border-b-cyan-400`}
               style={{ transform: "translate(-50%,-50%)" }}
             />
-            <div className={`absolute top-1/2 left-1/2 w-[2px] h-[2px] bg-white rounded-full -translate-x-1/2 -translate-y-1/2 ${isHovered ? cfg.glowHover : cfg.glow}`} />
+            <div className={`absolute top-1/2 left-1/2 w-[2px] h-[2px] bg-foreground rounded-full -translate-x-1/2 -translate-y-1/2 ${isHovered ? cfg.glowHover : cfg.glow}`} />
           </>
         )}
       </div>

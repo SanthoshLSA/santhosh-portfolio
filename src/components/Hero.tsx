@@ -31,18 +31,18 @@ export default function Hero() {
       "text-purple-300", // N
       "text-purple-200", // T
       "text-purple-100", // H
-      "text-white", // O
-      "text-white", // S
-      "text-white", // H
-      "text-white", // [space]
-      "text-white", // A
+      "text-foreground", // O
+      "text-foreground", // S
+      "text-foreground", // H
+      "text-foreground", // [space]
+      "text-foreground", // A
       "text-purple-100", // N
       "text-purple-200", // A
       "text-purple-300", // N
       "text-purple-400", // T
       "text-primary", // H
     ];
-    return colors[idx] || "text-white";
+    return colors[idx] || "text-foreground";
   };
 
   return (
@@ -85,7 +85,7 @@ export default function Hero() {
                   {wIdx === 0 && (
                     <span
                       onMouseEnter={() => setHoveredIdx(8)}
-                      className="inline-block text-white"
+                      className="inline-block text-foreground"
                       style={{
                         transform: getTranslation(8),
                         minWidth: "0.25em",
@@ -117,7 +117,7 @@ export default function Hero() {
           <Button
             variant="outline"
             size="lg"
-            className="border-white/10 hover:border-primary/50 hover:bg-primary/5 text-white font-bold tracking-widest uppercase text-sm px-8 py-6 rounded-xl transition-all duration-300 hover:scale-[1.02]"
+            className="border-foreground/10 hover:border-primary/50 hover:bg-primary/5 text-foreground font-bold tracking-widest uppercase text-sm px-8 py-6 rounded-xl transition-all duration-300 hover:scale-[1.02]"
             asChild
           >
             <a href="#contact">Get In Touch</a>
@@ -130,7 +130,7 @@ export default function Hero() {
             href="https://github.com/SanthoshLSA/"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-110 shadow-sm"
+            className="p-3.5 rounded-xl bg-foreground/[0.02] border border-foreground/5 text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-110 shadow-sm"
             title="GitHub"
           >
             <GithubIcon size={20} />
@@ -139,7 +139,7 @@ export default function Hero() {
             href="https://www.linkedin.com/in/santhosh-ananth-0a2602403/"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-110 shadow-sm"
+            className="p-3.5 rounded-xl bg-foreground/[0.02] border border-foreground/5 text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-110 shadow-sm"
             title="LinkedIn"
           >
             <LinkedinIcon size={20} />
@@ -148,7 +148,7 @@ export default function Hero() {
             href="https://leetcode.com/SanthoshLegendSA/"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-110 shadow-sm"
+            className="p-3.5 rounded-xl bg-foreground/[0.02] border border-foreground/5 text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-110 shadow-sm"
             title="LeetCode"
           >
             <LeetCodeIcon className="h-5 w-5" />

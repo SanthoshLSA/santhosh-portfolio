@@ -57,7 +57,7 @@ export default function Education() {
                 <CardContent className="p-8 flex-grow flex flex-col justify-between">
                   <div>
                     {/* Date & Location Header */}
-                    <div className="flex flex-wrap items-center justify-between text-[11px] sm:text-xs uppercase font-display tracking-wider text-muted-foreground gap-3 border-b border-white/5 pb-4 mb-5">
+                    <div className="flex flex-wrap items-center justify-between text-[11px] sm:text-xs uppercase font-display tracking-wider text-muted-foreground gap-3 border-b border-foreground/5 pb-4 mb-5">
                       <div className="flex items-center gap-2 font-semibold">
                         <Calendar className="h-4 w-4 text-primary/80" />
                         <span>{edu.date}</span>
@@ -69,7 +69,7 @@ export default function Education() {
                     </div>
 
                     {/* Degree & Institution */}
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug font-display tracking-wide uppercase">
+                    <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors leading-snug font-display tracking-wide uppercase">
                       {edu.degree}
                     </h3>
                     <p className="text-sm font-semibold text-muted-foreground/80 mt-1.5 font-display tracking-wider uppercase">

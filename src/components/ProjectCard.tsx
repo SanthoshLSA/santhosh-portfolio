@@ -33,11 +33,11 @@ export default function ProjectCard({
           <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 text-primary group-hover:scale-110 transition-transform duration-300">
             {icon}
           </div>
-          <span className="text-xs font-display font-semibold uppercase tracking-wider text-muted-foreground bg-secondary/30 px-3 py-1.5 rounded-md border border-white/5">
+          <span className="text-xs font-display font-semibold uppercase tracking-wider text-muted-foreground bg-secondary/30 px-3 py-1.5 rounded-md border border-foreground/5">
             {date}
           </span>
         </div>
-        <CardTitle className="text-xl font-bold text-slate-900 dark:text-white mt-5 group-hover:text-primary transition-colors font-display tracking-wide uppercase">
+        <CardTitle className="text-xl font-bold text-foreground mt-5 group-hover:text-primary transition-colors font-display tracking-wide uppercase">
           {title}
         </CardTitle>
       </CardHeader>
@@ -55,14 +55,14 @@ export default function ProjectCard({
             <Badge
               key={idx}
               variant="outline"
-              className="bg-secondary/20 border-white/5 text-[10px] sm:text-xs uppercase tracking-wider font-display py-1 px-2.5 rounded font-semibold text-muted-foreground/80"
+              className="bg-secondary/20 border-foreground/5 text-[10px] sm:text-xs uppercase tracking-wider font-display py-1 px-2.5 rounded font-semibold text-muted-foreground/80"
             >
               {tag}
             </Badge>
           ))}
         </div>
       </CardContent>
-      <CardFooter className="p-6 pt-6 border-t border-white/5 mt-auto flex items-center justify-end gap-4 font-display">
+      <CardFooter className="p-6 pt-6 border-t border-foreground/5 mt-auto flex items-center justify-end gap-4 font-display">
         {githubUrl && (
           <a
             href={githubUrl}

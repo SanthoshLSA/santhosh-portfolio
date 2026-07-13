@@ -68,13 +68,13 @@ export default function Certifications() {
                       <div className="p-3 rounded-lg bg-primary/5 border border-primary/15 group-hover:scale-110 transition-transform duration-300 shrink-0">
                         {cert.icon}
                       </div>
-                      <span className="text-xs font-display font-semibold uppercase tracking-wider text-muted-foreground bg-secondary/30 px-3 py-1.5 rounded-md border border-white/5">
+                      <span className="text-xs font-display font-semibold uppercase tracking-wider text-muted-foreground bg-secondary/30 px-3 py-1.5 rounded-md border border-foreground/5">
                         {cert.date}
                       </span>
                     </div>
 
                     {/* Title & Organization */}
-                    <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug font-display tracking-wide uppercase">
+                    <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors leading-snug font-display tracking-wide uppercase">
                       {cert.title}
                     </h3>
                     <p className="text-xs sm:text-sm text-muted-foreground/80 font-medium mt-3 flex items-center gap-2 font-display tracking-wider uppercase">
@@ -87,7 +87,7 @@ export default function Certifications() {
                       <Badge variant="outline" className="bg-primary/5 border-primary/25 text-primary text-[10px] sm:text-xs uppercase tracking-wider font-display py-1 px-2.5 font-bold">
                         {cert.achievement}
                       </Badge>
-                      <Badge variant="secondary" className="bg-secondary/40 border border-white/5 text-muted-foreground text-[10px] sm:text-xs uppercase tracking-wider font-display py-1 px-2.5 font-semibold">
+                      <Badge variant="secondary" className="bg-secondary/40 border border-foreground/5 text-muted-foreground text-[10px] sm:text-xs uppercase tracking-wider font-display py-1 px-2.5 font-semibold">
                         {cert.score}
                       </Badge>
                     </div>
@@ -97,7 +97,7 @@ export default function Certifications() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="w-full border-white/10 hover:border-primary/50 hover:bg-primary/5 text-[11px] sm:text-xs uppercase font-display tracking-wider font-semibold mt-auto flex items-center justify-center py-5"
+                    className="w-full border-foreground/10 hover:border-primary/50 hover:bg-primary/5 text-[11px] sm:text-xs uppercase font-display tracking-wider font-semibold mt-auto flex items-center justify-center py-5"
                     asChild
                   >
                     <a href={cert.verifyUrl} target="_blank" rel="noopener noreferrer">

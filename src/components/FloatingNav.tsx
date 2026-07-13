@@ -66,14 +66,14 @@ export default function FloatingNav() {
             className={`group relative flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-300 hover:scale-110 shadow-sm ${
               isActive
                 ? "text-primary bg-primary/10 border border-primary/40 shadow-[0_0_15px_rgba(168,85,247,0.25)]"
-                : "bg-white/[0.02] border border-white/5 text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/30"
+                : "bg-foreground/[0.02] border border-foreground/5 text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/30"
             }`}
             title={item.name}
           >
             {item.icon}
             
             {/* Tooltip */}
-            <div className="absolute right-16 top-1/2 -translate-y-1/2 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 bg-slate-950/95 border border-white/10 text-white text-[10px] uppercase font-display tracking-widest px-3 py-1.5 rounded-lg whitespace-nowrap shadow-xl">
+            <div className="absolute right-16 top-1/2 -translate-y-1/2 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 bg-slate-950/95 border border-foreground/10 text-foreground text-[10px] uppercase font-display tracking-widest px-3 py-1.5 rounded-lg whitespace-nowrap shadow-xl">
               {item.name}
             </div>
           </a>

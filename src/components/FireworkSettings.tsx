@@ -83,10 +83,10 @@ export default function FireworkSettings() {
       }`}
     >
       {/* Panel */}
-      <div className="frosted-glass rounded-r-xl border-r border-t border-b border-white/10 px-3 py-3 flex flex-col gap-1.5 w-44 backdrop-blur-2xl bg-black/30 shadow-2xl relative">
+      <div className="frosted-glass rounded-r-xl border-r border-t border-b border-foreground/10 px-3 py-3 flex flex-col gap-1.5 w-44 backdrop-blur-2xl bg-black/30 shadow-2xl relative">
         {/* Header */}
         <div className="flex items-center justify-between mb-1">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-white/40 font-display">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-foreground/40 font-display">
             Firework Mode
           </span>
         </div>
@@ -98,19 +98,19 @@ export default function FireworkSettings() {
             onClick={() => handleSelect(p.id)}
             className={`group w-full flex items-center justify-between gap-2 rounded-lg border px-2.5 py-1.5 text-left transition-all duration-200 cursor-pointer ${
               selected === p.id
-                ? `${p.border} ${p.glow} bg-white/5`
-                : "border-white/8 hover:border-white/20 hover:bg-white/[0.04]"
+                ? `${p.border} ${p.glow} bg-foreground/[5]`
+                : "border-foreground/8 hover:border-foreground/20 hover:bg-foreground/[0.04]"
             }`}
           >
             <div className="flex flex-col min-w-0">
               <span
                 className={`text-[11px] font-bold font-display leading-none mb-0.5 ${
-                  selected === p.id ? p.accent : "text-white/70"
+                  selected === p.id ? p.accent : "text-foreground/70"
                 }`}
               >
                 {p.label}
               </span>
-              <span className="text-[9px] text-white/30 leading-none">
+              <span className="text-[9px] text-foreground/30 leading-none">
                 {p.description}
               </span>
             </div>
@@ -136,7 +136,7 @@ export default function FireworkSettings() {
       {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="absolute -right-8 top-1/2 -translate-y-1/2 w-8 h-12 flex items-center justify-center frosted-glass rounded-r-lg border-r border-t border-b border-white/10 backdrop-blur-2xl bg-black/40 text-white/50 hover:text-white transition-colors cursor-pointer"
+        className="absolute -right-8 top-1/2 -translate-y-1/2 w-8 h-12 flex items-center justify-center frosted-glass rounded-r-lg border-r border-t border-b border-foreground/10 backdrop-blur-2xl bg-black/40 text-foreground/50 hover:text-foreground transition-colors cursor-pointer"
         aria-label="Toggle Firework Settings"
       >
         <svg

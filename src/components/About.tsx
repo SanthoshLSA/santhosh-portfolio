@@ -54,7 +54,7 @@ export default function About() {
         <div className="grid gap-16 lg:grid-cols-12 items-center max-w-7xl mx-auto">
           {/* Left: Avatar Frame */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative group max-w-sm w-full aspect-square rounded-2xl overflow-hidden border border-white/10 p-3 bg-slate-950/40 backdrop-blur-sm shadow-xl transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]">
+            <div className="relative group max-w-sm w-full aspect-square rounded-2xl overflow-hidden border border-foreground/10 p-3 bg-slate-950/40 backdrop-blur-sm shadow-xl transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]">
               <div className="relative w-full h-full rounded-xl overflow-hidden bg-slate-900">
                 <Image
                   src="/avatar.jpg"
@@ -79,7 +79,7 @@ export default function About() {
 
           {/* Right: Content */}
           <div className="lg:col-span-7 space-y-8">
-            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display tracking-wide uppercase leading-tight">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground font-display tracking-wide uppercase leading-tight">
               INTELLIGENT SYSTEMS & FULL-STACK DEVELOPMENT
             </h3>
             <p className="text-muted-foreground leading-relaxed text-base sm:text-lg">
@@ -104,7 +104,7 @@ export default function About() {
                         <p className="text-[11px] sm:text-xs uppercase font-display font-semibold tracking-wider text-muted-foreground">
                           {detail.label}
                         </p>
-                        <p className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-1.5 font-display leading-tight">
+                        <p className="text-base sm:text-lg font-bold text-foreground mt-1.5 font-display leading-tight">
                           {detail.value}
                         </p>
                         <p className="text-xs sm:text-sm text-muted-foreground/80 mt-1 font-sans">
