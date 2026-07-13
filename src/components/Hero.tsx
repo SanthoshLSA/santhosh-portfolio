@@ -21,26 +21,26 @@ export default function Hero() {
   const getTextColor = (idx: number) => {
     if (hoveredIdx !== null) {
       const distance = Math.abs(idx - hoveredIdx);
-      if (distance === 0) return "text-primary";
-      if (distance === 1) return "text-purple-300";
-      if (distance === 2) return "text-purple-100/90";
+      if (distance === 0) return "text-primary opacity-100";
+      if (distance === 1) return "text-primary opacity-80";
+      if (distance === 2) return "text-primary opacity-60";
     }
     const colors = [
-      "text-primary", // S
-      "text-purple-400", // A
-      "text-purple-300", // N
-      "text-purple-200", // T
-      "text-purple-100", // H
-      "text-foreground", // O
-      "text-foreground", // S
-      "text-foreground", // H
-      "text-foreground", // [space]
-      "text-foreground", // A
-      "text-purple-100", // N
-      "text-purple-200", // A
-      "text-purple-300", // N
-      "text-purple-400", // T
-      "text-primary", // H
+      "opacity-100 text-primary", // S
+      "opacity-90 text-primary",  // A
+      "opacity-80 text-primary",  // N
+      "opacity-70 text-primary",  // T
+      "opacity-60 text-primary",  // H
+      "opacity-100 text-foreground", // O
+      "opacity-100 text-foreground", // S
+      "opacity-100 text-foreground", // H
+      "opacity-100 text-foreground", // [space]
+      "opacity-100 text-foreground", // A
+      "opacity-60 text-primary",  // N
+      "opacity-70 text-primary",  // A
+      "opacity-80 text-primary",  // N
+      "opacity-90 text-primary",  // T
+      "opacity-100 text-primary", // H
     ];
     return colors[idx] || "text-foreground";
   };
@@ -117,7 +117,7 @@ export default function Hero() {
           <Button
             variant="outline"
             size="lg"
-            className="border-foreground/10 hover:border-primary/50 hover:bg-primary/5 text-foreground font-bold tracking-widest uppercase text-sm px-8 py-6 rounded-xl transition-all duration-300 hover:scale-[1.02]"
+            className="border-primary/20 hover:border-primary/50 hover:bg-primary/5 text-foreground font-bold tracking-widest uppercase text-sm px-8 py-6 rounded-xl transition-all duration-300 hover:scale-[1.02]"
             asChild
           >
             <a href="#contact">Get In Touch</a>
