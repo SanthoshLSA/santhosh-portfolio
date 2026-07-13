@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useTheme } from "next-themes";
 
 export type FireworkPreset = "cosmic" | "inferno" | "matrix" | "stardust" | "quantum";
 
@@ -68,6 +69,7 @@ const presets: {
 export default function FireworkSettings() {
   const [selected, setSelected] = React.useState<FireworkPreset>("cosmic");
   const [isOpen, setIsOpen] = React.useState(false);
+  const { resolvedTheme } = useTheme();
 
   const handleSelect = (id: FireworkPreset) => {
     setSelected(id);
@@ -75,6 +77,8 @@ export default function FireworkSettings() {
   };
 
   const active = presets.find((p) => p.id === selected)!;
+
+  if (resolvedTheme === "light") return null;
 
   return (
     <div

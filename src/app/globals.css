@@ -58,15 +58,15 @@
 }
 
 :root {
-  /* Crisp Light Mode Colors */
-  --background: oklch(0.98 0.01 285);
-  --foreground: oklch(0.15 0.02 285);
+  /* Soft Lavender Aesthetic Light Mode Colors */
+  --background: oklch(0.97 0.015 290); /* Very soft tinted lavender */
+  --foreground: oklch(0.35 0.04 285); /* Deep slate-eggplant */
   
-  --card: rgba(245, 240, 255, 0.8);
-  --card-foreground: oklch(0.15 0.02 285);
+  --card: rgba(250, 245, 255, 0.65);
+  --card-foreground: oklch(0.35 0.04 285);
   
-  --popover: rgba(245, 240, 255, 0.9);
-  --popover-foreground: oklch(0.15 0.02 285);
+  --popover: rgba(250, 245, 255, 0.85);
+  --popover-foreground: oklch(0.35 0.04 285);
   
   --primary: oklch(0.60 0.22 295); /* Electric Purple */
   --primary-foreground: oklch(0.99 0.005 0);
@@ -74,22 +74,24 @@
   --accent: oklch(0.60 0.22 295);
   --accent-foreground: oklch(0.99 0.005 0);
   
-  --secondary: rgba(0, 0, 0, 0.05);
-  --secondary-foreground: oklch(0.35 0.05 295);
+  --secondary: rgba(168, 85, 247, 0.06); /* Purple-tinted secondary */
+  --secondary-foreground: oklch(0.35 0.04 285);
   
-  --muted: oklch(0.95 0.01 285);
-  --muted-foreground: oklch(0.45 0.02 285);
+  --muted: oklch(0.95 0.01 290);
+  --muted-foreground: oklch(0.50 0.04 285);
   
-  --border: rgba(0, 0, 0, 0.08);
-  --input: rgba(0, 0, 0, 0.06);
-  --ring: oklch(0.60 0.22 295 / 60%);
+  --border: rgba(168, 85, 247, 0.12); /* Slightly purple borders */
+  --input: rgba(168, 85, 247, 0.08);
+  --ring: oklch(0.60 0.22 295 / 50%);
   --radius: 1.25rem;
   
-  --glass-bg: 255, 255, 255;
-  --glass-opacity: 0.7;
-  --glass-border: 0, 0, 0;
-  --glass-border-op: 0.08;
-  --glass-shadow: rgba(0, 0, 0, 0.05);
+  --glass-bg: 250, 245, 255;
+  --glass-opacity: 0.65;
+  --glass-border: 168, 85, 247;
+  --glass-border-op: 0.12;
+  --glass-shadow: rgba(168, 85, 247, 0.05);
+  
+  --grid-line: rgba(168, 85, 247, 0.04);
 }
 
 .dark {
@@ -125,6 +127,7 @@
   --glass-border: 255, 255, 255;
   --glass-border-op: 0.08;
   --glass-shadow: rgba(0, 0, 0, 0.3);
+  --grid-line: rgba(168, 85, 247, 0.015);
 }
 
 @layer base {
@@ -171,8 +174,8 @@
 .grid-bg {
   background-size: 50px 50px;
   background-image: 
-    linear-gradient(to right, rgba(168, 85, 247, 0.015) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(168, 85, 247, 0.015) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
 }
 
 /* Frosted Glassmorphism Panel Class */

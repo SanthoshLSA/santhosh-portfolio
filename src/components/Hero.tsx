@@ -21,14 +21,26 @@ export default function Hero() {
   const getTextColor = (idx: number) => {
     if (hoveredIdx !== null) {
       const distance = Math.abs(idx - hoveredIdx);
-      if (distance === 0) return "text-primary opacity-100";
-      if (distance === 1) return "text-primary opacity-80";
-      if (distance === 2) return "text-primary opacity-60";
+      if (distance === 0) return "text-purple-600 dark:text-purple-400";
+      if (distance === 1) return "text-purple-500 dark:text-purple-300";
+      if (distance === 2) return "text-purple-400 dark:text-purple-200";
     }
     const colors = [
-      "text-primary", "text-primary/90", "text-primary/80", "text-primary/70", "text-primary/60",
-      "text-primary/50", "text-primary/60", "text-primary/70", "text-primary/80", "text-primary/90",
-      "text-primary", "text-primary/90", "text-primary/80", "text-primary/70", "text-primary"
+      "text-purple-600 dark:text-purple-400", // S
+      "text-purple-600/90 dark:text-purple-400/90", // A
+      "text-purple-600/80 dark:text-purple-400/80", // N
+      "text-purple-600/70 dark:text-purple-400/70", // T
+      "text-purple-600/60 dark:text-purple-400/60", // H
+      "text-foreground", // O
+      "text-foreground", // S
+      "text-foreground", // H
+      "text-foreground", // [space]
+      "text-foreground", // A
+      "text-purple-600/60 dark:text-purple-400/60", // N
+      "text-purple-600/70 dark:text-purple-400/70", // A
+      "text-purple-600/80 dark:text-purple-400/80", // N
+      "text-purple-600/90 dark:text-purple-400/90", // T
+      "text-purple-600 dark:text-purple-400"  // H
     ];
     return colors[idx] || "text-foreground";
   };
