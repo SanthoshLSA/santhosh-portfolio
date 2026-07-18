@@ -12,6 +12,7 @@ interface Particle {
   alpha: number;
   speed: number;
   isHollow: boolean;
+  colorStr: string;
 }
 
 export default function LightModeBackground() {
@@ -37,16 +38,18 @@ export default function LightModeBackground() {
     const count = Math.floor((window.innerWidth * canvas.height) / 8000);
     const particles: Particle[] = [];
     
-    for (let i = 0; i < Math.min(count, 400); i++) {
+    for (let i = 0; i < Math.min(count, 350); i++) {
+      const alpha = Math.random() * 0.6 + 0.3;
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 0.15,
         vy: (Math.random() - 0.5) * 0.15 - 0.2, // Drift upwards slightly
         size: Math.random() * 4.5 + 1.5,
-        alpha: Math.random() * 0.6 + 0.3,
+        alpha: alpha,
         speed: Math.random() * 0.01 + 0.005,
         isHollow: Math.random() > 0.5,
+        colorStr: `rgba(168, 85, 247, ${alpha})`,
       });
     }
     particlesRef.current = particles;
@@ -61,6 +64,7 @@ export default function LightModeBackground() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     const particles = particlesRef.current;
+    const now = Date.now();
 
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
@@ -69,7 +73,7 @@ export default function LightModeBackground() {
       p.y += p.vy;
       
       // Wobble effect
-      p.x += Math.sin(Date.now() * p.speed) * 0.2;
+      p.x += Math.sin(now * p.speed) * 0.2;
 
       if (p.x < 0) p.x = canvas.width;
       if (p.x > canvas.width) p.x = 0;
@@ -79,11 +83,11 @@ export default function LightModeBackground() {
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       if (p.isHollow) {
-        ctx.strokeStyle = `rgba(168, 85, 247, ${p.alpha})`;
+        ctx.strokeStyle = p.colorStr;
         ctx.lineWidth = 1.2;
         ctx.stroke();
       } else {
-        ctx.fillStyle = `rgba(168, 85, 247, ${p.alpha})`;
+        ctx.fillStyle = p.colorStr;
         ctx.fill();
       }
     }

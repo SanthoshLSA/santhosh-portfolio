@@ -11,6 +11,7 @@ interface Star {
   vx: number;
   vy: number;
   size: number;
+  colorStr: string;
 }
 
 interface ShootingStar {
@@ -61,9 +62,10 @@ export default function CosmicBackground() {
     // OPTIMIZATION: Reduced max stars from 450 to 180 for low-power GPUs
     const starCount = Math.floor((window.innerWidth * docHeight) / 25000);
     const stars: Star[] = [];
-    for (let i = 0; i < Math.min(starCount, 180); i++) {
+    for (let i = 0; i < Math.min(starCount, 120); i++) {
       const rx = Math.random() * window.innerWidth;
       const ry = Math.random() * docHeight;
+      const size = 1 + Math.random() * 1.5;
       stars.push({
         x: rx,
         y: ry,
@@ -71,7 +73,8 @@ export default function CosmicBackground() {
         baseY: ry,
         vx: (Math.random() - 0.5) * 0.12,
         vy: (Math.random() - 0.5) * 0.12,
-        size: 1 + Math.random() * 1.5,
+        size: size,
+        colorStr: `rgba(168, 85, 247, ${0.45 + size * 0.15})`,
       });
     }
     starsRef.current = stars;
@@ -139,7 +142,7 @@ export default function CosmicBackground() {
       // Draw standard star core
       ctx.beginPath();
       ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(168, 85, 247, ${baseAlpha + star.size * 0.15})`;
+      ctx.fillStyle = star.colorStr;
       ctx.fill();
     }
 
@@ -152,6 +155,7 @@ export default function CosmicBackground() {
         const s2 = stars[j];
         const dx = s1.x - s2.x;
         const dy = s1.y - s2.y;
+        if (Math.abs(dx) > 130 || Math.abs(dy) > 130) continue;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 130) {
           ctx.beginPath();
