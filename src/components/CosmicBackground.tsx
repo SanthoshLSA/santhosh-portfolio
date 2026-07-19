@@ -264,7 +264,7 @@ export default function CosmicBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className={`pointer-events-none absolute inset-0 z-0 hidden md:block mix-blend-screen transition-opacity duration-1000 ${isLight ? 'opacity-0' : 'opacity-100'}`}
+      className={`pointer-events-none absolute inset-0 z-0 hidden md:block transition-opacity duration-1000 ${isLight ? 'opacity-0' : 'opacity-100'}`}
     />
   );
 }

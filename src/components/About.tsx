@@ -40,7 +40,7 @@ export default function About() {
   return (
     <section id="about" className="py-24 bg-transparent relative overflow-hidden">
       {/* Background glow */}
-      <div className="absolute right-0 top-1/4 h-[350px] w-[350px] rounded-full bg-primary/5 glow-blur -z-10" />
+      <div className="absolute right-0 top-1/4 h-[350px] w-[350px] rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.1)_0%,transparent_70%)] -z-10" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
@@ -58,7 +58,7 @@ export default function About() {
           {/* Left: Avatar Frame */}
           {resolvedTheme !== "light" && (
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative group max-w-sm w-full aspect-square rounded-2xl overflow-hidden border border-foreground/10 p-3 bg-slate-950/40 backdrop-blur-sm shadow-xl transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]">
+            <div className="relative group max-w-sm w-full aspect-square rounded-2xl overflow-hidden border border-foreground/10 p-3 bg-slate-950/40 backdrop-blur-sm shadow-xl transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(150,150,150,0.15)]">
               <div className="relative w-full h-full rounded-xl overflow-hidden bg-slate-900">
                 <Image
                   src="/avatar.jpg"
@@ -77,7 +77,7 @@ export default function About() {
                 />
               </div>
               {/* Glowing decorative frame on hover */}
-              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary to-purple-600 opacity-0 group-hover:opacity-10 blur transition duration-500 -z-10" />
+              <div className="absolute -inset-1 rounded-2xl bg-foreground opacity-0 group-hover:opacity-[0.03] transition duration-500 -z-10 shadow-[0_0_30px_rgba(150,150,150,0.1)]" />
             </div>
           </div>
 
