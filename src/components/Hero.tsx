@@ -3,9 +3,12 @@
 import * as React from "react";
 import { ArrowDown } from "lucide-react";
 import { useTheme } from "next-themes";
+import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import LeetCodeIcon from "./LeetCodeIcon";
 import { GithubIcon, LinkedinIcon } from "./BrandIcons";
+
+const Hero3D = dynamic(() => import("./Hero3D"), { ssr: false });
 
 export default function Hero() {
   const [hoveredIdx, setHoveredIdx] = React.useState<number | null>(null);
@@ -52,6 +55,9 @@ export default function Hero() {
 
   return (
     <section className="relative flex min-h-[calc(100vh-3.5rem)] items-center justify-center overflow-hidden py-24">
+      {/* 3D Canvas Background */}
+      <Hero3D />
+
       {/* Ambient Cosmic Glow Spheres */}
       <div className="absolute top-1/4 left-1/4 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.15)_0%,transparent_70%)] -z-10" />
       <div className="absolute bottom-1/4 right-1/4 h-[450px] w-[450px] rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.12)_0%,transparent_70%)] -z-10" />

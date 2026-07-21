@@ -18,6 +18,7 @@ export default function Projects() {
       tags: ["Python", "LangGraph", "LangChain", "Streamlit", "Plotly", "SQLite"],
       githubUrl: "https://github.com/SanthoshLSA",
       demoUrl: "https://autonomous-investment-agent-live.streamlit.app/",
+      codeSnippet: "const agent = new LangGraph();\nagent.addNode('fetch', marketData);\nagent.addNode('analyze', techAnalysis);\n\nagent.compile().invoke({\n  ticker: 'AAPL',\n  strategy: 'momentum'\n});",
     },
     {
       title: "Full-Stack Job Portal Website",
@@ -30,6 +31,7 @@ export default function Projects() {
       ],
       tags: ["React.js", "Node.js", "Express.js", "MongoDB", "Clerk", "Sentry", "Vercel"],
       githubUrl: "https://github.com/SanthoshLSA",
+      codeSnippet: "router.post('/apply', auth, async (req, res) => {\n  const { jobId, resumeId } = req.body;\n  \n  const application = new Application({\n    job: jobId,\n    applicant: req.user._id,\n    resume: resumeId\n  });\n\n  await application.save();\n  res.status(201).json({ success: true });\n});",
     },
     {
       title: "Full-Stack E-commerce Website",
@@ -42,6 +44,7 @@ export default function Projects() {
       ],
       tags: ["React.js", "Node.js", "Express.js", "MongoDB"],
       githubUrl: "https://github.com/SanthoshLSA",
+      codeSnippet: "const cartSchema = new Schema({\n  user: { type: ObjectId, ref: 'User' },\n  items: [{\n    product: { type: ObjectId, ref: 'Product' },\n    quantity: { type: Number, default: 1 }\n  }],\n  totalAmount: Number\n});\n\nCart.calculateTotal(userId);",
     },
     {
       title: "CS Fundamentals Chatbot AI",
@@ -56,6 +59,7 @@ export default function Projects() {
       tags: ["Python", "LLM API", "JSON", "Streamlit", "Hugging Face Spaces"],
       githubUrl: "https://github.com/SanthoshLSA",
       demoUrl: "https://santhosh-cs-ai-chatbot.streamlit.app/",
+      codeSnippet: "def generate_explanation(question, ans):\n    prompt = f\"Explain {question} with answer {ans}\"\n    response = llm.invoke(prompt)\n    return response.content\n\nst.chat_message('assistant').write(explain())",
     },
     {
       title: "Movie Recommendation System",
@@ -70,6 +74,7 @@ export default function Projects() {
       tags: ["Python", "Pandas", "NumPy", "Scikit-learn", "Streamlit"],
       githubUrl: "https://github.com/SanthoshLSA",
       demoUrl: "https://movie-recommendation-system-pnyhiy9hd2ofuljtf4leqr.streamlit.app/",
+      codeSnippet: "cv = CountVectorizer(max_features=5000,\n                    stop_words='english')\nvectors = cv.fit_transform(df['tags']).toarray()\n\nsimilarity = cosine_similarity(vectors)\n\ndef recommend(movie):\n    movie_idx = df[df['title'] == movie].index[0]\n    distances = similarity[movie_idx]\n    return sorted(list(enumerate(distances)),\\n                  reverse=True, key=lambda x:x[1])[1:6]",
     },
     {
       title: "FractureDetect – Bone Fracture Detection",
@@ -82,6 +87,7 @@ export default function Projects() {
       ],
       tags: ["Python", "NumPy", "Matplotlib", "Custom Image Algorithms"],
       githubUrl: "https://github.com/SanthoshLSA",
+      codeSnippet: "def detect_fracture(image_path):\n    img = read_raw_image(image_path)\n    gray = to_grayscale(img)\n    edges = custom_sobel_edge_detect(gray)\n    \n    hist = compute_histogram(edges)\n    score = compare_histograms(hist, normal_hist)\n    \n    return 'Fractured' if score < threshold else 'Normal'",
     },
   ];
 
